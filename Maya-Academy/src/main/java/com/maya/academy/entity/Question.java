@@ -49,7 +49,7 @@ public class Question {
     @JsonIgnore
     private Form form;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonManagedReference
     private List<Option> options;
 }

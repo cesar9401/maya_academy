@@ -23,4 +23,23 @@ public class QuestionService {
         }
         return repository.save(question);
     }
+
+    public List<Question> createGroupOfQuestions(List<Question> questions) {
+        questions.forEach(q -> {
+            if (q.getOptions() != null) {
+                q.getOptions().forEach(o -> {
+                    o.setQuestion(q);
+                });
+            }
+        });
+
+        return (List<Question>) repository.saveAll(questions);
+    }
+
+    public boolean deleteQuestionById(Question question) {
+        return repository.findById(question.getQuestionId()).map(q -> {
+            repository.delete(q);
+            return true;
+        }).orElse(false);
+    }
 }

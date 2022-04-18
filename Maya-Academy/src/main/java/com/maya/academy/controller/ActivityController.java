@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,13 @@ public class ActivityController {
     private ActivityService service;
 
     @GetMapping
-    public ResponseEntity<List<Activity>> getAll(@RequestHeader(value="Authorization", required = false) String token) {
+    public ResponseEntity<List<Activity>> getAll(@RequestHeader(value = "Authorization", required = false) String token) {
         return new ResponseEntity<>(service.getAll(), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/lesson/{id}")
+    public ResponseEntity<List<Activity>> getByLessonId(@RequestHeader(value = "Authorization", required = false) String token, @PathVariable int id) {
+        List<Activity> activities = service.getByLessonId(id);
+        return new ResponseEntity<>(activities, HttpStatus.OK);
     }
 }

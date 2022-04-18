@@ -16,4 +16,8 @@ public class ActivityService {
     public List<Activity> getAll() {
         return (List<Activity>) repository.findAll();
     }
+
+    public List<Activity> getByLessonId(int lessonId) {
+        return repository.findActivityByLessonId(lessonId);
+    }
 }
