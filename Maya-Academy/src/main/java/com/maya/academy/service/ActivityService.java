@@ -5,13 +5,15 @@ import com.maya.academy.repository.ActivityCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ActivityService {
 
     @Autowired
-    private ActivityCrudRepository respository;
+    private ActivityCrudRepository repository;
 
-    public Activity createActivity(Activity activity) {
-        return respository.save(activity);
+    public List<Activity> getAll() {
+        return (List<Activity>) repository.findAll();
     }
 }

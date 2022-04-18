@@ -1,11 +1,12 @@
 package com.maya.academy.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,16 +29,18 @@ public class Option {
     @Column(name = "option_id")
     private Integer optionId;
 
+    /*
     @Column(name = "question_id")
     private Integer questionId;
+    */
 
     @Column(name = "option_title")
     private String optionTitle;
 
     private Boolean correct;
 
-    @ManyToOne
-    @JoinColumn(name = "question_id", insertable = false, updatable = false)
-    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "question_id", referencedColumnName = "question_id", updatable = false)
+    @JsonBackReference
     private Question question;
 }

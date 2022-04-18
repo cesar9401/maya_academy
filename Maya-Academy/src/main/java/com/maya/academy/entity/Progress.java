@@ -1,6 +1,5 @@
 package com.maya.academy.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,6 +35,7 @@ public class Progress {
 
     private Boolean complete;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     @JsonIgnore
@@ -47,4 +45,5 @@ public class Progress {
     @JoinColumn(name = "form_id", insertable = false, updatable = false)
     @JsonIgnore
     private Form form;
+    */
 }

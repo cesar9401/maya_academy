@@ -32,6 +32,8 @@ public class Lesson {
 
     private String description;
 
+    /*
     @OneToMany(mappedBy = "lesson")
     private List<Activity> activities;
+    */
 }

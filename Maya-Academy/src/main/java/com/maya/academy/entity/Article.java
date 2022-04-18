@@ -1,5 +1,6 @@
 package com.maya.academy.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,8 +31,10 @@ public class Article {
     @Column(name = "article_id")
     private Integer articleId;
 
-    // @Column(name = "activity_id")
-    // private Integer activityId;
+    /*
+    @Column(name = "activity_id")
+    private Integer activityId;
+    */
 
     @Column(name = "article_name")
     private String articleName;
@@ -45,7 +48,8 @@ public class Article {
     @Column(name = "modification_date")
     private LocalDate modificationDate;
 
-    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", updatable = false)
     @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", updatable = false)
+    @JsonBackReference
     private Activity activity;
 }

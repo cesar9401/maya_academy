@@ -27,13 +27,13 @@ public class UserController {
     @Autowired
     private JWTUtil jwt;
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user) {
         User u = service.createUser(user);
         return new ResponseEntity<>(u, HttpStatus.CREATED);
     }
 
-    @PutMapping()
+    @PutMapping
     public ResponseEntity<User> updateUser(@RequestHeader(value="Authorization") String token, @RequestBody User user) {
         if(tokenIsNotValidate(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);

@@ -1,11 +1,12 @@
 package com.maya.academy.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,8 +32,10 @@ public class Form {
     @Column(name = "form_id")
     private Integer formId;
 
+    /*
     @Column(name = "activity_id")
     private Integer activityId;
+    */
 
     @Column(name = "form_name")
     private String formName;
@@ -50,8 +53,8 @@ public class Form {
     @OneToMany(mappedBy = "form")
     private List<Question> questions;
 
-    @OneToOne
-    @JoinColumn(name = "activity_id", insertable = false, updatable = false)
-    @JsonIgnore
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", updatable = false)
+    @JsonBackReference
     private Activity activity;
 }
