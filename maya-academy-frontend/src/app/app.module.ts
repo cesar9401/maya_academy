@@ -6,15 +6,20 @@ import { AppComponent } from './app.component';
 import { EditorComponent } from './editor/editor.component';
 
 import { QuillModule } from 'ngx-quill';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AddLessonComponent } from './add-lesson/add-lesson.component';
+import { AddFormComponent } from './add-form/add-form.component';
 
 @NgModule({
-	declarations: [AppComponent, EditorComponent],
+	declarations: [AppComponent, EditorComponent, AddLessonComponent, AddFormComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		QuillModule.forRoot(),
 		FormsModule,
+		ReactiveFormsModule,
+		HttpClientModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

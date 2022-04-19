@@ -35,7 +35,7 @@ public class ArticleController {
 
     @PostMapping
     private ResponseEntity<Article> createArticle(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody Article article) {
-        System.out.println(article);
+        // System.out.println(article);
         Article art = service.createArticle(article);
         return new ResponseEntity<>(art, HttpStatus.CREATED);
     }

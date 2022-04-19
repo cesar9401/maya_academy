@@ -5,7 +5,7 @@ export class Activity {
 	activityId: number;
 	userId: number;
 	lessonId: number;
-	activityType: number;
+	activityType: string;
 	article: Article;
 	form: Form;
 }

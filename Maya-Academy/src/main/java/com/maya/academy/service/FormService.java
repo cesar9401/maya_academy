@@ -5,6 +5,7 @@ import com.maya.academy.repository.FormCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,6 +19,7 @@ public class FormService {
     }
 
     public Form createForm(Form form) {
+        form.setCreationDate(LocalDate.now());
         return repository.save(form);
     }
 }
