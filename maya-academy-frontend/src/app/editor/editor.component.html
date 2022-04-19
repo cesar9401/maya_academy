@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="row my-4">
+		<div class="col text-center my-4">
+			<h1>Editor</h1>
+		</div>
+	</div>
+
+	<div class="row my-4 py-4" style="height: 500px; max-height: 500px;">
+		<div class="col-10 offset-1 my-4 text-center">
+			<quill-editor
+				[styles]="{height: '400px'}"
+				(onEditorChanged)="editorChanged($event)"
+				[modules]="modules"
+				theme="snow"
+			></quill-editor>
+		</div>
+	</div>
+</div>
