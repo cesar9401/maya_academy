@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="row my-4">
+		<div class="col text-center my-4">
+			<h1>Editor</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-10 offset-1">
+			<form [formGroup]="form" (submit)="send()">
+				<div class="mb-3">
+					<label for="title-article" class="form-label fs-3 my-0"
+						>Titulo</label
+					>
+					<input
+						type="text"
+						class="form-control text-center"
+						id="title-article"
+						formControlName="title"
+					/>
+				</div>
+
+				<div
+					class="mb-3 text-center"
+					style="height: 500px; max-height: 500px"
+				>
+					<quill-editor
+						[styles]="{ height: '400px' }"
+						[modules]="modules"
+						theme="snow"
+						formControlName="text"
+					></quill-editor>
+				</div>
+
+				<div class="mb-3 text-center">
+					<button
+						class="btn btn-primary btn-lg text-center"
+						[disabled]="form.invalid"
+					>
+						Crear Articulo
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

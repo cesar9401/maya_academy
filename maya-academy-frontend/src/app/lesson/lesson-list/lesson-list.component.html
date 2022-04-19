@@ -1,0 +1,11 @@
+<div class="container my-4 pt-2">
+	<div class="row">
+		<div class="col text-center">
+			<h1>Lecciones</h1>
+		</div>
+	</div>
+
+	<div *ngFor="let lesson of lessons">
+		<app-lesson-element [lesson]="lesson"></app-lesson-element>
+	</div>
+</div>

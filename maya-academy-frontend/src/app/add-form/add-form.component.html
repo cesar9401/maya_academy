@@ -1,0 +1,43 @@
+<div class="container mt-4">
+	<div class="row">
+		<div class="col text-center">
+			<h1>Agregar Formulario</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-10 offset-1">
+			<form [formGroup]="formForm" (submit)="send()">
+				<div class="mb-3">
+					<label for="form-name" class="form-label fs-4 my-0"
+						>Nombre del Formulario</label
+					>
+					<input
+						type="text"
+						class="form-control text-center"
+						id="form-name"
+						formControlName="formName"
+					/>
+				</div>
+				<div class="mb-3">
+					<label for="description" class="form-label"
+						>Descripci&oacute;n</label
+					>
+					<textarea
+						id="description"
+						class="form-control"
+						formControlName="formDescription"
+					></textarea>
+				</div>
+				<div class="mb-3 text-center">
+					<button
+						class="btn btn-primary btn-lg"
+						[disabled]="formForm.invalid"
+					>
+						Agregar Formulario
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

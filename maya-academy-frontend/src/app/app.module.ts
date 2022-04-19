@@ -10,13 +10,43 @@ import { HomepageContentComponent } from './homepage-content/homepage-content.co
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+import { EditorComponent } from './editor/editor.component';
+
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AddLessonComponent } from './add-lesson/add-lesson.component';
+import { AddFormComponent } from './add-form/add-form.component';
+import { HeaderComponent } from './header/header.component';
+import { LessonComponent } from './lesson/lesson.component';
+import { LessonElementComponent } from './lesson/lesson-element/lesson-element.component';
+import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
+import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.component';
 
 @NgModule({
-	declarations: [AppComponent, ToolBarComponent, HomepageContentComponent, LoginComponent, RegisterComponent],
+	declarations: [
+		AppComponent,
+		ToolBarComponent,
+		HomepageContentComponent,
+		LoginComponent,
+		RegisterComponent,
+		EditorComponent,
+		AddLessonComponent,
+		AddFormComponent,
+		HeaderComponent,
+		LessonComponent,
+		LessonElementComponent,
+		LessonListComponent,
+		LessonDetailsComponent,
+	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		AppRoutingModule,
-		BrowserAnimationsModule
+		QuillModule.forRoot(),
+		FormsModule,
+		ReactiveFormsModule,
+		HttpClientModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
