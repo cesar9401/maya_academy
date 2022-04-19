@@ -7,6 +7,8 @@ import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.c
 import { LessonElementComponent } from './lesson/lesson-element/lesson-element.component';
 import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
 import { LessonComponent } from './lesson/lesson.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
 	{
@@ -22,6 +24,8 @@ const routes: Routes = [
 	},
 	{ path: 'add-form', component: AddFormComponent },
 	{ path: 'add-article', component: EditorComponent },
+	{ path: 'login', component: LoginComponent },
+	{ path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
