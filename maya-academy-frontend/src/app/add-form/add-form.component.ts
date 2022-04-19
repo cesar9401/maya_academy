@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Activity } from '../model/activity.model';
 import { Form } from '../model/form.model';
 import { FormService } from '../service/form.service';
@@ -14,6 +15,7 @@ export class AddFormComponent implements OnInit {
 	form: Form;
 
 	constructor(
+		private router: Router,
 		private formBuilder: FormBuilder,
 		private service: FormService
 	) {}
@@ -45,6 +47,7 @@ export class AddFormComponent implements OnInit {
 			this.service.createForm(this.form).subscribe({
 				next: (response) => {
 					console.log(response);
+					this.router.navigate(['/']);
 				},
 				error: (e) => {
 					console.log(e);

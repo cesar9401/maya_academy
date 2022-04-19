@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
 import { Activity } from '../model/activity.model';
 import { Article } from '../model/article.model';
@@ -16,6 +17,7 @@ export class EditorComponent implements OnInit {
 	article: Article;
 
 	constructor(
+		private router: Router,
 		private formBuilder: FormBuilder,
 		private service: ArticleService
 	) {}
@@ -65,6 +67,7 @@ export class EditorComponent implements OnInit {
 			this.service.createArticle(this.article).subscribe({
 				next: (response: Article) => {
 					console.log(response);
+					this.router.navigate(['/']);
 				},
 				error: (e) => {
 					console.log(e);

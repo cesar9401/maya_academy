@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Lesson } from '../model/lesson.model';
 import { LessonService } from '../service/lesson.service';
 
@@ -13,6 +14,7 @@ export class AddLessonComponent implements OnInit {
 	lesson: Lesson;
 
 	constructor(
+		private router: Router,
 		private formBuilder: FormBuilder,
 		private service: LessonService
 	) {}
@@ -33,6 +35,7 @@ export class AddLessonComponent implements OnInit {
 			this.service.createLesson(this.lesson).subscribe({
 				next: (response: Lesson) => {
 					console.log(response);
+					this.router.navigate(['/lesson/lesson-list']);
 				},
 				error: (e) => {
 					console.log(e);

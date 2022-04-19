@@ -14,6 +14,10 @@ export class LessonService {
 		return this.http.get<Lesson[]>(this.url);
 	}
 
+	getLessonById(id: number) {
+		return this.http.get<Lesson>(`${this.url}/${id}`);
+	}
+
 	createLesson(lesson: Lesson) {
 		return this.http.post<Lesson>(this.url, lesson);
 	}
