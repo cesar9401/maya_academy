@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddFormComponent } from './add-form/add-form.component';
 import { AddLessonComponent } from './add-lesson/add-lesson.component';
 import { EditorComponent } from './editor/editor.component';
+import { QuestionItemComponent } from './form/question-item/question-item.component';
 import { CanActiveAuthGuard } from './guard/can-active-auth.guard';
 import { HomepageContentComponent } from './homepage-content/homepage-content.component';
 import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.component';
@@ -50,6 +51,10 @@ const routes: Routes = [
 	{
 		path: 'register',
 		component: RegisterComponent,
+	},
+	{
+		path: 'question-item',
+		component: QuestionItemComponent,
 	},
 ];
 
