@@ -97,4 +97,14 @@ public class JWTUtil {
             return null;
         }
     }
+
+    public boolean tokenIsNotValidate(String token) {
+        String idUser = this.getKey(token);
+        return idUser == null;
+    }
+
+    public boolean tokenIsNotCorrect(String token, Integer id) {
+        Integer idUser = Integer.valueOf(this.getKey(token));
+        return !idUser.equals(id);
+    }
 }

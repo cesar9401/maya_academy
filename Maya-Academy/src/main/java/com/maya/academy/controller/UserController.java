@@ -35,7 +35,7 @@ public class UserController {
 
     @PutMapping
     public ResponseEntity<User> updateUser(@RequestHeader(value="Authorization") String token, @RequestBody User user) {
-        if(tokenIsNotValidate(token)) {
+        if(jwt.tokenIsNotValidate(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
@@ -43,7 +43,7 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        if(tokenIsNotCorrect(token, user.getUserId())) {
+        if(jwt.tokenIsNotCorrect(token, user.getUserId())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
@@ -53,7 +53,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteUser(@RequestHeader(value="Authorization") String token, @PathVariable int id) {
-        if(tokenIsNotValidate(token) || tokenIsNotCorrect(token, id)) {
+        if(jwt.tokenIsNotValidate(token) || jwt.tokenIsNotCorrect(token, id)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
@@ -63,15 +63,5 @@ public class UserController {
         }
 
         return new ResponseEntity<>(isDeleted, HttpStatus.NOT_FOUND);
-    }
-
-    private boolean tokenIsNotValidate(String token) {
-        String idUser = jwt.getKey(token);
-        return idUser == null;
-    }
-
-    private boolean tokenIsNotCorrect(String token, Integer id) {
-        Integer idUser = Integer.valueOf(jwt.getKey(token));
-        return !idUser.equals(id);
     }
 }

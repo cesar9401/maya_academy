@@ -11,8 +11,8 @@ public class OptionService {
     @Autowired
     private OptionCrudRepository repository;
 
-    public Boolean deleteOption(Option option) {
-        return repository.findById(option.getOptionId()).map(o -> {
+    public Boolean deleteOption(int id) {
+        return repository.findById(id).map(o -> {
             repository.deleteById(o.getOptionId());
             return true;
         }).orElse(false);

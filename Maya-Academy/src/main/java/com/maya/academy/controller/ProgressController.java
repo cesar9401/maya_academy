@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,12 +28,18 @@ public class ProgressController {
     private ProgressService service;
 
     @PostMapping
-    public ResponseEntity<Progress> createProgress(@RequestBody Progress progress) {
+    public ResponseEntity<Progress> createProgress(@RequestHeader(value = "Authorization") String token, @RequestBody Progress progress) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         return new ResponseEntity<>(service.createProgress(progress), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Progress>> getAll() {
+    public ResponseEntity<List<Progress>> getAll(@RequestHeader(value = "Authorization") String token) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 }

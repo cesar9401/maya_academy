@@ -27,12 +27,20 @@ public class ActivityController {
     private ActivityService service;
 
     @GetMapping
-    public ResponseEntity<List<Activity>> getAll(@RequestHeader(value = "Authorization", required = false) String token) {
+    public ResponseEntity<List<Activity>> getAll(@RequestHeader(value = "Authorization") String token) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
         return new ResponseEntity<>(service.getAll(), HttpStatus.CREATED);
     }
 
     @GetMapping("/lesson/{id}")
-    public ResponseEntity<List<Activity>> getByLessonId(@RequestHeader(value = "Authorization", required = false) String token, @PathVariable int id) {
+    public ResponseEntity<List<Activity>> getByLessonId(@RequestHeader(value = "Authorization") String token, @PathVariable int id) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
         List<Activity> activities = service.getByLessonId(id);
         return new ResponseEntity<>(activities, HttpStatus.OK);
     }

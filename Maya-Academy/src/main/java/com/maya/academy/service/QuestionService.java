@@ -36,8 +36,8 @@ public class QuestionService {
         return (List<Question>) repository.saveAll(questions);
     }
 
-    public boolean deleteQuestionById(Question question) {
-        return repository.findById(question.getQuestionId()).map(q -> {
+    public boolean deleteQuestionById(int questionId) {
+        return repository.findById(questionId).map(q -> {
             repository.delete(q);
             return true;
         }).orElse(false);

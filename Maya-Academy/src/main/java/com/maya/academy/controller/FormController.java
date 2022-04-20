@@ -28,13 +28,19 @@ public class FormController {
     private FormService service;
 
     @GetMapping
-    public ResponseEntity<List<Form>> getAll(@RequestHeader(value="Authorization", required = false) String token) {
+    public ResponseEntity<List<Form>> getAll(@RequestHeader(value = "Authorization") String token) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         List<Form> forms = service.getAll();
         return new ResponseEntity<>(forms, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Form> createForm(@RequestHeader(value="Authorization", required = false) String token, @RequestBody Form form) {
+    public ResponseEntity<Form> createForm(@RequestHeader(value = "Authorization") String token, @RequestBody Form form) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         Form f = service.createForm(form);
         return new ResponseEntity<>(f, HttpStatus.CREATED);
     }
