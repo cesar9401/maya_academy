@@ -35,9 +35,11 @@ export class LoginComponent implements OnInit {
       console.log(user);
 
       this.service.login(user).subscribe({
-        next: (response) => {
+        next: (response: any) => {
           console.log(response);
+          let token =  response.Authorization;
           this.router.navigate(['/']);
+        
         },
         error: (e) => {
           console.log(e);

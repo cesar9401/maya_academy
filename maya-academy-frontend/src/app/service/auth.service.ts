@@ -6,7 +6,7 @@ import { User } from '../model/user.model';
 	providedIn: 'root',
 })
 export class AuthService {
-	private url: string = 'http://localhost:8090/maya-academy/auth';
+	private url: string = 'http://localhost:8090/maya-academy/api/auth';
 
 	constructor(private http: HttpClient) {}
 
