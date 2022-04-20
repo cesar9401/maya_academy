@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddFormComponent } from './add-form/add-form.component';
 import { AddLessonComponent } from './add-lesson/add-lesson.component';
 import { EditorComponent } from './editor/editor.component';
+import { HomepageContentComponent } from './homepage-content/homepage-content.component';
 import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.component';
 import { LessonElementComponent } from './lesson/lesson-element/lesson-element.component';
 import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
@@ -11,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+	{ path: "", component: HomepageContentComponent },
 	{
 		path: 'lesson',
 		component: LessonComponent,
