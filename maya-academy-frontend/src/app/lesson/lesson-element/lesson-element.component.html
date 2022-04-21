@@ -1,2 +1,7 @@
-<p>{{lesson.lessonName}}</p>
-<a [routerLink]="['/lesson', lesson.lessonId]">Ver leccion</a>
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+<div class="card-header"><a [routerLink]="['/lesson', lesson.lessonId]">Ver leccion</a></div>
+    <div class="card-body">
+        <h5 class="card-title">{{lesson.lessonName}}</h5>
+        <p class="card-text">Aquí podría ir la descripción de la lección, para así poder tener una idea de lo que trata la misma</p>
+    </div>
+</div>

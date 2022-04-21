@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         next: (response: any) => {
           console.log(response);
           let token =  response.Authorization;
+          localStorage.setItem("current_user", token);
           this.router.navigate(['/']);
         
         },
