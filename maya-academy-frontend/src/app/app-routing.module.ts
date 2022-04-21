@@ -4,10 +4,10 @@ import { AddFormComponent } from './add-form/add-form.component';
 import { AddLessonComponent } from './add-lesson/add-lesson.component';
 import { EditorComponent } from './editor/editor.component';
 import { QuestionItemViewComponent } from './form/question-item-view/question-item-view.component';
-import { QuestionItemComponent } from './form/question-item/question-item.component';
 import { QuestionListViewComponent } from './form/question-list-view/question-list-view.component';
 import { QuestionListComponent } from './form/question-list/question-list.component';
 import { CanActiveAuthGuard } from './guard/can-active-auth.guard';
+import { HomelayoutComponent } from './homelayout/homelayout.component';
 import { HomepageContentComponent } from './homepage-content/homepage-content.component';
 import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.component';
 import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
@@ -18,35 +18,48 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
 	{
 		path: '',
-		component: HomepageContentComponent,
-		canActivate: [CanActiveAuthGuard],
-	},
-	{
-		path: 'home',
-		component: HomepageContentComponent,
-		canActivate: [CanActiveAuthGuard],
-	},
-	{
-		path: 'lesson',
-		component: LessonComponent,
+		component: HomelayoutComponent,
 		canActivate: [CanActiveAuthGuard],
 		children: [
-			{ path: '', component: LessonListComponent },
-			{ path: 'lesson-list', component: LessonListComponent },
-			{ path: 'add-lesson', component: AddLessonComponent },
-			{ path: ':lessonId', component: LessonDetailsComponent },
+			{
+				path: '',
+				component: HomepageContentComponent,
+				canActivate: [CanActiveAuthGuard],
+			},
+			{
+				path: 'home',
+				component: HomepageContentComponent,
+				canActivate: [CanActiveAuthGuard],
+			},
+			{
+				path: 'lesson',
+				component: LessonComponent,
+				canActivate: [CanActiveAuthGuard],
+				children: [
+					{ path: '', component: LessonListComponent },
+					{ path: 'lesson-list', component: LessonListComponent },
+					{ path: 'add-lesson', component: AddLessonComponent },
+					{ path: ':lessonId', component: LessonDetailsComponent },
+					{ path: ':lessonId/add-form', component: AddFormComponent },
+					{
+						path: ':lessonId/form/:formId/add-questions',
+						component: QuestionListComponent,
+					},
+				],
+			},
+			// {
+			// 	path: 'add-form',
+			// 	component: AddFormComponent,
+			// 	canActivate: [CanActiveAuthGuard],
+			// },
+			{
+				path: 'add-article',
+				component: EditorComponent,
+				canActivate: [CanActiveAuthGuard],
+			},
 		],
 	},
-	{
-		path: 'add-form',
-		component: AddFormComponent,
-		canActivate: [CanActiveAuthGuard],
-	},
-	{
-		path: 'add-article',
-		component: EditorComponent,
-		canActivate: [CanActiveAuthGuard],
-	},
+
 	{
 		path: 'login',
 		component: LoginComponent,
@@ -54,10 +67,6 @@ const routes: Routes = [
 	{
 		path: 'register',
 		component: RegisterComponent,
-	},
-	{
-		path: 'question-list',
-		component: QuestionListComponent,
 	},
 	{
 		path: 'question-view',

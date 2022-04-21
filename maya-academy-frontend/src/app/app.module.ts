@@ -17,7 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddLessonComponent } from './add-lesson/add-lesson.component';
 import { AddFormComponent } from './add-form/add-form.component';
-import { HeaderComponent } from './header/header.component';
 import { LessonComponent } from './lesson/lesson.component';
 import { LessonElementComponent } from './lesson/lesson-element/lesson-element.component';
 import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
@@ -26,6 +25,7 @@ import { QuestionItemComponent } from './form/question-item/question-item.compon
 import { QuestionListComponent } from './form/question-list/question-list.component';
 import { QuestionItemViewComponent } from './form/question-item-view/question-item-view.component';
 import { QuestionListViewComponent } from './form/question-list-view/question-list-view.component';
+import { HomelayoutComponent } from './homelayout/homelayout.component';
 
 @NgModule({
 	declarations: [
@@ -37,15 +37,15 @@ import { QuestionListViewComponent } from './form/question-list-view/question-li
 		EditorComponent,
 		AddLessonComponent,
 		AddFormComponent,
-		HeaderComponent,
 		LessonComponent,
 		LessonElementComponent,
 		LessonListComponent,
 		LessonDetailsComponent,
-  QuestionItemComponent,
-  QuestionListComponent,
-  QuestionItemViewComponent,
-  QuestionListViewComponent,
+		QuestionItemComponent,
+		QuestionListComponent,
+		QuestionItemViewComponent,
+		QuestionListViewComponent,
+		HomelayoutComponent,
 	],
 	imports: [
 		BrowserModule,
