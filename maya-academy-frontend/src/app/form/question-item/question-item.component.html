@@ -1,7 +1,7 @@
 <div class="container my-4">
 	<div class="row">
 		<div class="col-8 offset-2">
-			<div class="card">
+			<div class="card {{classes[index % classes.length]}}">
 				<div
 					class="card-header d-flex justify-content-between align-items-center"
 				>
@@ -20,7 +20,11 @@
 						/>
 					</div>
 					<div>
-						<button type="button" class="btn-close"></button>
+						<button
+							type="button"
+							class="btn-close"
+							(click)="emitQuestionIndex('close')"
+						></button>
 					</div>
 				</div>
 				<div class="card-body">
@@ -35,15 +39,15 @@
 					<div class="options my-4">
 						<div
 							class="row my-2"
-							*ngFor="let option of options; index as i"
+							*ngFor="let option of question.options; index as i"
 						>
 							<div class="col input-group">
 								<div class="input-group-text">
 									<input
 										class="form-check-input mt-0"
-										type="radio"
+										type="checkbox"
 										[checked]="option.correct"
-										name="nombre_1"
+										[name]="index"
 										(input)="changeRadio($event, i)"
 									/>
 								</div>
@@ -88,10 +92,20 @@
 		</div>
 		<div class="col px-0 d-flex flex-column justify-content-center">
 			<div>
-				<button class="btn btn-secondary my-1">&#8593;</button>
+				<button
+					class="btn btn-secondary my-1"
+					(click)="emitQuestionIndex('up')"
+				>
+					&#8593;
+				</button>
 			</div>
 			<div>
-				<button class="btn btn-secondary my-1">&#8595;</button>
+				<button
+					class="btn btn-secondary my-1"
+					(click)="emitQuestionIndex('down')"
+				>
+					&#8595;
+				</button>
 			</div>
 		</div>
 	</div>

@@ -1,11 +1,15 @@
 <div class="container">
 	<div class="row" *ngFor="let question of questions; index as i">
-		<app-question-item [question]="question" [index]="i"></app-question-item>
+		<app-question-item
+			[question]="question"
+			[index]="i"
+			(questionIndex)="receiveQuestionIndex($event)"
+		></app-question-item>
 	</div>
 
 	<div class="row">
 		<div class="col text-center">
-			<button class="btn btn-primary" (click)="see()">See</button>
+			<button class="btn btn-outline-success" (click)="createQuestions()">Agregar Preguntas</button>
 		</div>
 	</div>
 </div>
