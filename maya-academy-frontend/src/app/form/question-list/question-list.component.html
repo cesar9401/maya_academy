@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="row" *ngFor="let question of questions; index as i">
+		<app-question-item [question]="question" [index]="i"></app-question-item>
+	</div>
+
+	<div class="row">
+		<div class="col text-center">
+			<button class="btn btn-primary" (click)="see()">See</button>
+		</div>
+	</div>
+</div>

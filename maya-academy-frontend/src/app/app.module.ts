@@ -23,6 +23,7 @@ import { LessonElementComponent } from './lesson/lesson-element/lesson-element.c
 import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
 import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.component';
 import { QuestionItemComponent } from './form/question-item/question-item.component';
+import { QuestionListComponent } from './form/question-list/question-list.component';
 
 @NgModule({
 	declarations: [
@@ -40,6 +41,7 @@ import { QuestionItemComponent } from './form/question-item/question-item.compon
 		LessonListComponent,
 		LessonDetailsComponent,
   QuestionItemComponent,
+  QuestionListComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Option } from 'src/app/model/option.model';
 import { Question } from 'src/app/model/question.model';
 
@@ -8,13 +8,16 @@ import { Question } from 'src/app/model/question.model';
 	styleUrls: ['./question-item.component.css'],
 })
 export class QuestionItemComponent implements OnInit {
-	question: Question;
+	@Input() question: Question;
+	@Input() index: number;
+	// @Output() close = new EventEmitter();
 	options: Option[];
 
 	constructor() {}
 
 	ngOnInit(): void {
-		this.question = new Question();
+		// this.question = new Question();
+		this.question.questionTitle = `Pregunta ${this.index + 1}`;
 		const opt1 = new Option();
 		opt1.correct = false;
 		opt1.optionTitle = "Opcion 1";

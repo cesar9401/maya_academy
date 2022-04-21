@@ -6,7 +6,9 @@
 					class="card-header d-flex justify-content-between align-items-center"
 				>
 					<div>
-						<h6 class="my-0">Pregunta</h6>
+						<h6 class="my-0 text-center">
+							Pregunta {{ index + 1 }}
+						</h6>
 					</div>
 					<div>
 						<input
@@ -17,6 +19,9 @@
 							min="0"
 						/>
 					</div>
+					<div>
+						<button type="button" class="btn-close"></button>
+					</div>
 				</div>
 				<div class="card-body">
 					<div class="question">
@@ -24,6 +29,7 @@
 							class="form-control"
 							type="text"
 							(input)="changeQuestionTitle($event)"
+							value="{{ question.questionTitle }}"
 						/>
 					</div>
 					<div class="options my-4">
@@ -78,6 +84,14 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="col px-0 d-flex flex-column justify-content-center">
+			<div>
+				<button class="btn btn-secondary my-1">&#8593;</button>
+			</div>
+			<div>
+				<button class="btn btn-secondary my-1">&#8595;</button>
 			</div>
 		</div>
 	</div>
