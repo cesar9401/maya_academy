@@ -5,7 +5,28 @@
 		</div>
 	</div>
 
-	<div *ngFor="let lesson of lessons">
-		<app-lesson-element [lesson]="lesson"></app-lesson-element>
+	<br><br>
+
+	<div class="row">
+		<div class="col-3">
+			<div *ngFor="let lesson of lessons">
+				<app-lesson-element [lesson]="lesson"></app-lesson-element>
+			</div>
+		</div>
+		<div class="col-9 " style="border-left: 1px solid black; padding-left: 5px;">
+			<h2>¿Qué es la cultura maya?</h2>
+			<p>
+				Una de las civilizaciones antiguas del mundo habitó en Mesoamérica hace más de 1,000 años antes de Cristo. Cubriendo desde el Sureste de México, toda Guatemala, Belice y partes del Oeste de Honduras y El Salvador, los Mayas fueron una civilización sobresaliente que dejó sus raíces bien marcadas en esta parte del mundo. A pesar de que el número de población es indefinida, se conoce que es una de las civilizaciones más densas debido a la gran porción de tierra que abarcó en esta región del mundo.
+			</p>
+			<p>
+				Gracias a la magnífica arquitectura y el material que utilizaron los Mayas, hoy en día, podemos apreciar impresionantes ciudades, templos y estelas que han sobrevivido el pasar del tiempo. Muchas construcciones aún ocultas en medio de la selva petenera, las ruinas Maya son continuo misterio de eterno crecimiento. Siendo una de las civilizaciones indígenas más dominantes de las Américas, los Mayas sobresalieron gracias a su complejo sistema de escritura, extraordinaria arquitectura, impresionantes matemáticas y su calendarios y sistema astronómico sumamente sofisticado.
+			</p>
+			<p>
+				Los Mayas estaban firmemente divididos; todos compartían ideologías y tradiciones similares pero nunca estuvieron unidos como un único imperio. Dividida entre nobles, ordinarios y esclavos, esta civilización era extremadamente poderosa. Alcanzaron descubrimientos tan novedosos que hoy en día son factores que influencian el desarrollo de la sociedad del mundo. Se expandieron a través de una porción de tierra tan grande que los hizo desarrollar 30 diferentes idiomas y dialectos, los cuales se originaron del idioma materno Protomaya, hablado alrededor de 5,000 años atrás. Hoy en día, el 40% de la población guatemalteca es descendiente de esta maravillosa etnia y es en Guatemala en donde la mayoría de los idiomas Maya aún se preservan, contando con un total de 22.
+			</p>
+			<div align="center">
+				<img src="/assets/img/general/cultura_maya.jpg" width="100%" style="margin-bottom: 20px;">
+			</div>
+		</div>
 	</div>
 </div>
