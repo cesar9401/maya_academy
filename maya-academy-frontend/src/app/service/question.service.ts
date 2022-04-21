@@ -28,4 +28,8 @@ export class QuestionService {
 	deleteQuestion(questionId: number) {
 		return this.http.delete<boolean>(`${this.url}/${questionId}`, this.headers);
 	}
+
+	getQuestionById(questionId: number) {
+		return this.http.get<Question>(`${this.url}/${questionId}`);
+	}
 }
