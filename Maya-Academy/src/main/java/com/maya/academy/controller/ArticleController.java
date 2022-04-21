@@ -28,13 +28,20 @@ public class ArticleController {
     private ArticleService service;
 
     @GetMapping
-    private ResponseEntity<List<Article>> getAll(@RequestHeader(value = "Authorization", required = false) String token) {
+    private ResponseEntity<List<Article>> getAll(@RequestHeader(value = "Authorization") String token) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
         List<Article> articles = service.getAll();
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 
     @PostMapping
-    private ResponseEntity<Article> createArticle(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody Article article) {
+    private ResponseEntity<Article> createArticle(@RequestHeader(value = "Authorization") String token, @RequestBody Article article) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         // System.out.println(article);
         Article art = service.createArticle(article);
         return new ResponseEntity<>(art, HttpStatus.CREATED);

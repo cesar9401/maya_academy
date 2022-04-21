@@ -30,26 +30,38 @@ public class LessonController {
     private LessonService service;
 
     @PostMapping
-    public ResponseEntity<Lesson> addLesson(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody Lesson lesson) {
+    public ResponseEntity<Lesson> addLesson(@RequestHeader(value = "Authorization") String token, @RequestBody Lesson lesson) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         Lesson l = service.createLesson(lesson);
         return new ResponseEntity<>(l, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Lesson>> getAll(@RequestHeader(value = "Authorization", required = false) String token) {
+    public ResponseEntity<List<Lesson>> getAll(@RequestHeader(value = "Authorization") String token) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         List<Lesson> lessons = service.getAll();
         return new ResponseEntity<>(lessons, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Lesson> getLessonById(@PathVariable int id) {
+    public ResponseEntity<Lesson> getLessonById(@RequestHeader(value = "Authorization") String token, @PathVariable int id) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         return service.getLessonById(id)
                 .map(l -> new ResponseEntity<>(l, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping
-    public ResponseEntity<Lesson> updateLesson(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody Lesson lesson) {
+    public ResponseEntity<Lesson> updateLesson(@RequestHeader(value = "Authorization") String token, @RequestBody Lesson lesson) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         Lesson l = service.updateLesson(lesson);
         return new ResponseEntity<>(l, HttpStatus.OK);
     }

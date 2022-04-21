@@ -10,6 +10,7 @@ import { LessonService } from 'src/app/service/lesson.service';
 	styleUrls: ['./lesson-details.component.css'],
 })
 export class LessonDetailsComponent implements OnInit {
+	lessonId: number;
 	lesson: Lesson;
 	activities: Activity[];
 
@@ -20,16 +21,17 @@ export class LessonDetailsComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		const routeParams = this.route.snapshot.paramMap;
+		this.lessonId = Number(routeParams.get('lessonId'));
 		this.getLessonById();
 	}
 
 	private getLessonById() {
-		const routeParams = this.route.snapshot.paramMap;
-		const lessonId = Number(routeParams.get('lessonId'));
-		this.lessonService.getLessonById(lessonId).subscribe({
+		this.lessonService.getLessonById(this.lessonId).subscribe({
 			next: (response) => {
 				this.lesson = response;
-				console.log(this.lesson)
+				console.log(this.lesson);
+				// peticion de actividades
 			},
 			error: (e) => {
 				console.log(e);

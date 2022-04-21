@@ -22,6 +22,10 @@ import { LessonComponent } from './lesson/lesson.component';
 import { LessonElementComponent } from './lesson/lesson-element/lesson-element.component';
 import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
 import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.component';
+import { QuestionItemComponent } from './form/question-item/question-item.component';
+import { QuestionListComponent } from './form/question-list/question-list.component';
+import { QuestionItemViewComponent } from './form/question-item-view/question-item-view.component';
+import { QuestionListViewComponent } from './form/question-list-view/question-list-view.component';
 
 @NgModule({
 	declarations: [
@@ -38,6 +42,10 @@ import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.c
 		LessonElementComponent,
 		LessonListComponent,
 		LessonDetailsComponent,
+  QuestionItemComponent,
+  QuestionListComponent,
+  QuestionItemViewComponent,
+  QuestionListViewComponent,
 	],
 	imports: [
 		BrowserModule,

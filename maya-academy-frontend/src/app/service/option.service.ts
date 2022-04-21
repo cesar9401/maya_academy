@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Activity } from '../model/activity.model';
+import { Option } from '../model/option.model';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class ActivityService {
-	private url: string = 'http://localhost:8090/maya-academy/api/activity';
+export class OptionService {
+	private url: string = 'http://localhost:8090/maya-academy/api/option';
 	private headers: {};
 
 	constructor(private http: HttpClient) {
@@ -17,10 +17,7 @@ export class ActivityService {
 		};
 	}
 
-	getActivitiesByLesson(lessonId: number) {
-		return this.http.get<Activity[]>(
-			`${this.url}/lesson/${lessonId}`,
-			this.headers
-		);
+	deleteOptionById(idOption: number) {
+		return this.http.delete<boolean>(`${this.url}/${idOption}`, this.headers);
 	}
 }
