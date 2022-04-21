@@ -6,56 +6,56 @@ import { Validators } from '@angular/forms';
 import { User } from '../model/user.model';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+	selector: 'app-register',
+	templateUrl: './register.component.html',
+	styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+	formRegister: FormGroup;
 
-  formRegister: FormGroup;
+	constructor(
+		private router: Router,
+		private formBuilder: FormBuilder,
+		private service: UserService
+	) {}
 
-  constructor(
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private service: UserService
-    ) { }
-
-  ngOnInit(): void {
-    this.formRegister = this.formBuilder.group({
-      first_name: ['', [Validators.required]],
-      last_name: ['', [Validators.required]],
+	ngOnInit(): void {
+		this.formRegister = this.formBuilder.group({
+			first_name: ['', [Validators.required]],
+			last_name: ['', [Validators.required]],
 			username: ['', [Validators.required]],
-			password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
-      phone_number: ['', [Validators.required]],
+			password: ['', [Validators.required, Validators.minLength(3)]],
+			typeUser: ['', [Validators.required]],
+			email: ['', [Validators.required, Validators.email]],
+			gender: ['', [Validators.required]],
+			phone_number: [
+				'',
+				[Validators.required, Validators.pattern('[0-9]{8,8}')],
+			],
 		});
-  }
+	}
 
-  send() {
-    console.log(this.formRegister);
-    if (this.formRegister.valid) {
-      
+	send() {
+		if (this.formRegister.valid) {
 			const user = new User();
-      user.firstName = this.formRegister.value.first_name;
-      user.lastName = this.formRegister.value.last_name;
-      user.password = this.formRegister.value.password;
-      user.username = this.formRegister.value.username;
-      user.email = this.formRegister.value.email;
-      user.gender = this.formRegister.value.gender;
-      user.phoneNumber = this.formRegister.value.phone_number;
-      console.log(user);
-
-      this.service.createUser(user).subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.router.navigate(['/']);
-        },
-        error: (e) => {
-          console.log(e);
-        }
-      })
-
+			user.firstName = this.formRegister.value.first_name;
+			user.lastName = this.formRegister.value.last_name;
+			user.password = this.formRegister.value.password;
+			user.username = this.formRegister.value.username;
+			user.email = this.formRegister.value.email;
+			user.gender = this.formRegister.value.gender;
+			user.phoneNumber = this.formRegister.value.phone_number;
+			user.userType = this.formRegister.value.typeUser === '1';
+			console.log(user);
+			this.service.createUser(user).subscribe({
+				next: (response: any) => {
+					console.log(response);
+					this.router.navigate(['/login']);
+				},
+				error: (e) => {
+					console.log(e);
+				},
+			});
 		}
-  }
+	}
 }
