@@ -68,6 +68,10 @@ export class AddFormComponent implements OnInit {
 	}
 
 	private getLessonById() {
+		if(!this.lessonId) {
+			this.router.navigate(['/lesson/lesson-list']);
+		}
+
 		this.lessonService.getLessonById(this.lessonId).subscribe({
 			next: (response) => {
 				this.lesson = response;

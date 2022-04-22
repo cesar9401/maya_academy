@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Activity } from 'src/app/model/activity.model';
 import { Question } from 'src/app/model/question.model';
 import { ActivityService } from 'src/app/service/activity.service';
+import { FormService } from 'src/app/service/form.service';
 
 @Component({
 	selector: 'app-question-list',
@@ -18,7 +19,8 @@ export class QuestionListComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
-		private activityService: ActivityService
+		private activityService: ActivityService,
+		private formService: FormService
 	) {}
 
 	ngOnInit(): void {
@@ -37,22 +39,34 @@ export class QuestionListComponent implements OnInit {
 			this.router.navigate(['/lesson/lesson-list']);
 		}
 
-		this.activityService.getActivityByLessonIdAndFormId(this.lessonId, this.formId).subscribe({
-			next: (response) => {
-				this.activity = response;
-				console.log(this.activity);
-			},
-			error: (e) => {
-				console.log(e);
-				this.router.navigate(['/lesson/lesson-list']);
-			}
-		});
+		this.activityService
+			.getActivityByLessonIdAndFormId(this.lessonId, this.formId)
+			.subscribe({
+				next: (response) => {
+					this.activity = response;
+					console.log(this.activity);
+				},
+				error: (e) => {
+					console.log(e);
+					this.router.navigate(['/lesson/lesson-list']);
+				},
+			});
 	}
 
 	createQuestions() {
 		const correct = this.questions.every((q) => this.checkQuestion(q));
 
-		if(correct) {
+		if (correct) {
+			this.activity.form.questions = this.questions;
+			this.formService.createForm(this.activity.form).subscribe({
+				next: (response) => {
+					console.log(response);
+					this.router.navigate(['/lesson', this.lessonId]);
+				},
+				error: (e) => {
+					console.log(e);
+				},
+			});
 		}
 	}
 
@@ -68,8 +82,7 @@ export class QuestionListComponent implements OnInit {
 				this.insertElement(obj.index + 1, this.addQuestion());
 				break;
 		}
-
-		console.log(this.questions);
+		// console.log(this.questions);
 	}
 
 	addQuestion(): Question {
@@ -82,8 +95,8 @@ export class QuestionListComponent implements OnInit {
 
 	removeQuestion(index: number) {
 		this.questions.splice(index, 1);
-		if(!this.questions.length) {
-			this.questions.push(this.addQuestion())
+		if (!this.questions.length) {
+			this.questions.push(this.addQuestion());
 		}
 	}
 
@@ -120,5 +133,6 @@ export class QuestionListComponent implements OnInit {
 	}
 
 	cancelAddQuestions() {
+		this.router.navigate(['/lesson', this.lessonId]);
 	}
 }

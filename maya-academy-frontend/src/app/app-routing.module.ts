@@ -41,26 +41,22 @@ const routes: Routes = [
 					{ path: 'lesson-list', component: LessonListComponent },
 					{ path: 'add-lesson', component: AddLessonComponent },
 					{ path: ':lessonId', component: LessonDetailsComponent },
+					// agregar formulario
 					{ path: ':lessonId/add-form', component: AddFormComponent },
-					{
-						path: ':lessonId/article/:articleId',
-						component: ArticleViewComponent,
-					},
 					{
 						path: ':lessonId/form/:formId/add-questions',
 						component: QuestionListComponent,
 					},
+					// agregar articulo
+					{
+						path: ':lessonId/add-article',
+						component: EditorComponent,
+					},
+					{
+						path: ':lessonId/article/:articleId',
+						component: ArticleViewComponent,
+					},
 				],
-			},
-			// {
-			// 	path: 'add-form',
-			// 	component: AddFormComponent,
-			// 	canActivate: [CanActiveAuthGuard],
-			// },
-			{
-				path: 'add-article',
-				component: EditorComponent,
-				canActivate: [CanActiveAuthGuard],
 			},
 		],
 	},

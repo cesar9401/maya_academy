@@ -43,7 +43,8 @@ public class ArticleController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         // System.out.println(article);
-        Article art = service.createArticle(article);
+        int userId = Integer.parseInt(jwt.getKey(token));
+        Article art = service.createArticle(article, userId);
         return new ResponseEntity<>(art, HttpStatus.CREATED);
     }
 }

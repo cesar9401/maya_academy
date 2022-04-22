@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Activity } from '../model/activity.model';
 import { Article } from '../model/article.model';
+import { Lesson } from '../model/lesson.model';
 import { ArticleService } from '../service/article.service';
+import { LessonService } from '../service/lesson.service';
 
 @Component({
 	selector: 'app-editor',
@@ -14,14 +16,23 @@ export class EditorComponent implements OnInit {
 	modules: {};
 	form: FormGroup;
 	article: Article;
+	lessonId: number;
+	lesson: Lesson;
 
 	constructor(
 		private router: Router,
+		private route: ActivatedRoute,
 		private formBuilder: FormBuilder,
-		private service: ArticleService
+		private articleService: ArticleService,
+		private lessonService: LessonService
 	) {}
 
 	ngOnInit(): void {
+		const routeParam = this.route.snapshot.paramMap;
+		this.lessonId = Number(routeParam.get('lessonId'));
+
+		this.getLessonById();
+
 		this.modules = {
 			toolbar: [
 				['bold', 'italic', 'underline', 'strike'], // toggled buttons
@@ -48,14 +59,31 @@ export class EditorComponent implements OnInit {
 		});
 	}
 
+	getLessonById() {
+		if(!this.lessonId) {
+			this.router.navigate(['/lesson/lesson-list']);
+		}
+
+		this.lessonService.getLessonById(this.lessonId).subscribe({
+			next: (response) => {
+				console.log(response);
+				this.lesson = response;
+			},
+			error: (e) => {
+				console.log(e);
+				this.router.navigate(['/lesson/lesson-list']);
+			}
+		});
+	}
+
 	send() {
 		if (this.form.valid) {
 			const { title, text } = this.form.value;
 
 			const activity: Activity = new Activity();
 			/* datos quedamos */
-			activity.userId = 1; // el token brinda el userId
-			activity.lessonId = 1;
+			// activity.userId = 1; // el token brinda el userId
+			activity.lessonId = this.lessonId;
 			activity.activityType = 'ARTICLE';
 			/* datos quemados */
 			this.article = new Article();
@@ -63,11 +91,11 @@ export class EditorComponent implements OnInit {
 			this.article.articleName = title;
 			this.article.articleText = text;
 
-			this.service.createArticle(this.article).subscribe({
+			this.articleService.createArticle(this.article).subscribe({
 				next: (response: Article) => {
-					// console.log(response);
+					console.log(response);
 					this.router.navigate(['/']);
-					this.router.navigate(['/lesson/1']);
+					this.router.navigate(['/lesson', this.lessonId]);
 				},
 				error: (e) => {
 					console.log(e);

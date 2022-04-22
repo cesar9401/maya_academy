@@ -19,8 +19,22 @@ public class FormService {
     }
 
     public Form createForm(Form form, int userId) {
-        form.getActivity().setUserId(userId);
+        if (form.getActivity() != null) {
+            form.getActivity().setUserId(userId);
+        }
         form.setCreationDate(LocalDate.now());
+
+        if (form.getQuestions() != null) {
+            form.getQuestions().forEach(q -> {
+                q.setForm(form);
+                if (q.getOptions() != null) {
+                    q.getOptions().forEach(o -> {
+                        o.setQuestion(q);
+                    });
+                }
+            });
+        }
+
         return repository.save(form);
     }
 }
