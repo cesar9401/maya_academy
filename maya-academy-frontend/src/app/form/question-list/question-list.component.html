@@ -8,8 +8,23 @@
 	</div>
 
 	<div class="row">
-		<div class="col text-center">
-			<button class="btn btn-outline-success" (click)="createQuestions()">Agregar Preguntas</button>
+		<div class="d-flex align-items-center justify-content-center">
+			<div class="m-4">
+				<button
+					class="btn btn-outline-success"
+					(click)="createQuestions()"
+				>
+					Agregar Preguntas
+				</button>
+			</div>
+			<div class="m-4">
+				<button
+					class="btn btn-outline-danger"
+					(click)="cancelAddQuestions()"
+				>
+					Cancelar
+				</button>
+			</div>
 		</div>
 	</div>
 </div>

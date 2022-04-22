@@ -18,7 +18,8 @@ public class FormService {
         return (List<Form>) repository.findAll();
     }
 
-    public Form createForm(Form form) {
+    public Form createForm(Form form, int userId) {
+        form.getActivity().setUserId(userId);
         form.setCreationDate(LocalDate.now());
         return repository.save(form);
     }

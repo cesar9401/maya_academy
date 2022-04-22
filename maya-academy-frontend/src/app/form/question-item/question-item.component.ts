@@ -26,7 +26,6 @@ export class QuestionItemComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		console.log(this.classes[this.index % this.classes.length])
 	}
 
 	addOption() {

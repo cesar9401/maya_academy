@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Option } from 'src/app/model/option.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Activity } from 'src/app/model/activity.model';
 import { Question } from 'src/app/model/question.model';
+import { ActivityService } from 'src/app/service/activity.service';
 
 @Component({
 	selector: 'app-question-list',
@@ -8,23 +10,56 @@ import { Question } from 'src/app/model/question.model';
 	styleUrls: ['./question-list.component.css'],
 })
 export class QuestionListComponent implements OnInit {
+	activity: Activity;
 	questions: Question[];
+	lessonId: number;
+	formId: number;
 
-	constructor() {}
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private activityService: ActivityService
+	) {}
 
 	ngOnInit(): void {
-		this.questions = [this.addQuestion(), this.addQuestion()];
+		const routeParams = this.route.snapshot.paramMap;
+		this.lessonId = Number(routeParams.get('lessonId'));
+		this.formId = Number(routeParams.get('formId'));
+
+		this.getActivityByLessonIdAndFormId();
+
+		/* questions */
+		this.questions = [this.addQuestion()];
+	}
+
+	getActivityByLessonIdAndFormId() {
+		if (!this.lessonId || !this.formId) {
+			this.router.navigate(['/lesson/lesson-list']);
+		}
+
+		this.activityService.getActivityByLessonIdAndFormId(this.lessonId, this.formId).subscribe({
+			next: (response) => {
+				this.activity = response;
+				console.log(this.activity);
+			},
+			error: (e) => {
+				console.log(e);
+				this.router.navigate(['/lesson/lesson-list']);
+			}
+		});
 	}
 
 	createQuestions() {
-		const correct = this.questions.every(q => this.checkQuestion(q));
-		console.log(correct);
+		const correct = this.questions.every((q) => this.checkQuestion(q));
+
+		if(correct) {
+		}
 	}
 
 	receiveQuestionIndex(obj: { index: number; data: string }) {
 		switch (obj.data) {
 			case 'close':
-				this.questions.splice(obj.index, 1);
+				this.removeQuestion(obj.index);
 				break;
 			case 'up':
 				this.insertElement(obj.index, this.addQuestion());
@@ -45,6 +80,13 @@ export class QuestionListComponent implements OnInit {
 		return question;
 	}
 
+	removeQuestion(index: number) {
+		this.questions.splice(index, 1);
+		if(!this.questions.length) {
+			this.questions.push(this.addQuestion())
+		}
+	}
+
 	insertElement(index: number, item: Question) {
 		this.questions = [
 			...this.questions.slice(0, index),
@@ -54,10 +96,7 @@ export class QuestionListComponent implements OnInit {
 	}
 
 	checkQuestion(question: Question): boolean {
-		if (
-			!question.questionTitle ||
-			!question.questionTitle.trim()
-		) {
+		if (!question.questionTitle || !question.questionTitle.trim()) {
 			return false;
 		}
 
@@ -65,9 +104,7 @@ export class QuestionListComponent implements OnInit {
 			return false;
 		}
 
-		const anyCorrect = question.options.every(
-			(option) => !option.correct
-		);
+		const anyCorrect = question.options.every((option) => !option.correct);
 		if (anyCorrect) {
 			return false;
 		}
@@ -80,5 +117,8 @@ export class QuestionListComponent implements OnInit {
 		}
 
 		return true;
+	}
+
+	cancelAddQuestions() {
 	}
 }

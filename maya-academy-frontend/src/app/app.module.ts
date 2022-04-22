@@ -26,6 +26,7 @@ import { QuestionListComponent } from './form/question-list/question-list.compon
 import { QuestionItemViewComponent } from './form/question-item-view/question-item-view.component';
 import { QuestionListViewComponent } from './form/question-list-view/question-list-view.component';
 import { HomelayoutComponent } from './homelayout/homelayout.component';
+import { ArticleViewComponent } from './lesson/article-view/article-view.component';
 
 @NgModule({
 	declarations: [
@@ -46,6 +47,7 @@ import { HomelayoutComponent } from './homelayout/homelayout.component';
 		QuestionItemViewComponent,
 		QuestionListViewComponent,
 		HomelayoutComponent,
+  ArticleViewComponent,
 	],
 	imports: [
 		BrowserModule,

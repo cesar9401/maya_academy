@@ -9,6 +9,7 @@ import { QuestionListComponent } from './form/question-list/question-list.compon
 import { CanActiveAuthGuard } from './guard/can-active-auth.guard';
 import { HomelayoutComponent } from './homelayout/homelayout.component';
 import { HomepageContentComponent } from './homepage-content/homepage-content.component';
+import { ArticleViewComponent } from './lesson/article-view/article-view.component';
 import { LessonDetailsComponent } from './lesson/lesson-details/lesson-details.component';
 import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
 import { LessonComponent } from './lesson/lesson.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
 					{ path: 'add-lesson', component: AddLessonComponent },
 					{ path: ':lessonId', component: LessonDetailsComponent },
 					{ path: ':lessonId/add-form', component: AddFormComponent },
+					{
+						path: ':lessonId/article/:articleId',
+						component: ArticleViewComponent,
+					},
 					{
 						path: ':lessonId/form/:formId/add-questions',
 						component: QuestionListComponent,
