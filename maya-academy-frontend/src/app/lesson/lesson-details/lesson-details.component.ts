@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activity } from 'src/app/model/activity.model';
 import { Lesson } from 'src/app/model/lesson.model';
+import { ActivityService } from 'src/app/service/activity.service';
 import { LessonService } from 'src/app/service/lesson.service';
 
 @Component({
@@ -18,12 +19,14 @@ export class LessonDetailsComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private lessonService: LessonService,
+		private activityService: ActivityService,
 	) {}
 
 	ngOnInit(): void {
 		const routeParams = this.route.snapshot.paramMap;
 		this.lessonId = Number(routeParams.get('lessonId'));
 		this.getLessonById();
+		this.getActivitiesByLesson();
 	}
 
 	private getLessonById() {
@@ -39,4 +42,17 @@ export class LessonDetailsComponent implements OnInit {
 			}
 		});
 	}
+
+	private getActivitiesByLesson():void {
+		this.activityService.getActivitiesByLesson(this.lessonId).subscribe({
+			next: (response) => {
+				this.activities = response;
+				console.log(this.activities);
+			},
+			error: (e) => {
+				console.log(e);
+			}
+		})
+	}
+
 }

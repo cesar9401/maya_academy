@@ -1,0 +1,34 @@
+
+<!--
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+<div class="card-header"><a [routerLink]="['/lesson', activity.activityId]">Ver leccion</a></div>
+    <div class="card-body">
+        <h5 class="card-title" *ngIf="activity.activityType=='FORM'">Form:</h5>
+        <h5 class="card-title" *ngIf="activity.activityType=='ARTICLE'">Article:</h5>
+        <p class="card-text">Aquí podría ir la descripción de la lección, para así poder tener una idea de lo que trata la misma</p>
+    </div>
+</div>
+    -->
+
+<a *ngIf="activity.activityType=='FORM'" href="" class="list-group-item list-group-item-secondary ">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{activity.activityId}}</h5>
+        <small>Formulario</small>
+    </div>
+    <p class="mb-1">
+        Aquí podría ir una descripción de la actividad
+    </p>
+    <small>Id autor: {{activity.userId}}</small>
+</a>
+
+
+<a *ngIf="activity.activityType=='ARTICLE'" href="" class="list-group-item list-group-item-dark">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{activity.activityId}}</h5>
+        <small>Artículo</small>
+    </div>
+    <p class="mb-1">
+        Aquí podría ir una descripción de la actividad
+    </p>
+    <small>Id autor: {{activity.userId}}</small>
+</a>

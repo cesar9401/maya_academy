@@ -26,6 +26,7 @@ import { QuestionItemComponent } from './form/question-item/question-item.compon
 import { QuestionListComponent } from './form/question-list/question-list.component';
 import { QuestionItemViewComponent } from './form/question-item-view/question-item-view.component';
 import { QuestionListViewComponent } from './form/question-list-view/question-list-view.component';
+import { ActivityElementComponent } from './lesson/activity-element/activity-element.component';
 
 @NgModule({
 	declarations: [
@@ -46,6 +47,7 @@ import { QuestionListViewComponent } from './form/question-list-view/question-li
   QuestionListComponent,
   QuestionItemViewComponent,
   QuestionListViewComponent,
+  ActivityElementComponent,
 	],
 	imports: [
 		BrowserModule,

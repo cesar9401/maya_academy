@@ -1,1 +1,24 @@
-<p *ngIf="lesson">{{lesson.lessonName}}</p>
+<div class="container my-4 pt-2">
+    <div class="row">
+        <div class="col text-center">
+            <h1 *ngIf="lesson">{{lesson.lessonName}}</h1>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+        <div class="col-3">
+            <div class="list-group">
+                <h5 class="activities-list-title">Actividades de la Lección</h5>
+                <div *ngFor="let activity of activities">
+                    <app-activity-element [activity]="activity"></app-activity-element>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+
+        </div>
+    </div>
+
+</div>
