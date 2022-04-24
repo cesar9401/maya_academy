@@ -1,5 +1,13 @@
 <div class="container" *ngIf="activity && activity.article">
 	<div class="row my-4">
+		<div class="col offset-1 my-4">
+			<a class="link-success m-1" routerLink="/lesson/{{ lessonId }}"
+				><span class="badge bg-warning fs-5">Volver</span></a
+			>
+		</div>
+	</div>
+
+	<div class="row my-4">
 		<div class="col text-center my-4">
 			<h1>Editor</h1>
 		</div>

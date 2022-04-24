@@ -15,11 +15,23 @@ public class ActivityService {
     private ActivityCrudRepository repository;
 
     public List<Activity> getAll() {
-        return (List<Activity>) repository.findAll();
+        List<Activity> activities = (List<Activity>) repository.findAll();
+        activities.forEach(a -> {
+            if (a.getUser() != null) {
+                a.getUser().setPassword(null);
+            }
+        });
+        return activities;
     }
 
     public List<Activity> getByLessonId(int lessonId) {
-        return repository.findActivityByLessonId(lessonId);
+        List<Activity> activities = repository.findActivityByLessonId(lessonId);
+        activities.forEach(a -> {
+            if (a.getUser() != null) {
+                a.getUser().setPassword(null);
+            }
+        });
+        return activities;
     }
 
     public Optional<Activity> findActivityByLessonIdAndFormId(int lessonId, int formId) {

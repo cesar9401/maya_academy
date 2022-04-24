@@ -1,19 +1,21 @@
 <div class="container" *ngIf="activity">
-	<div class="row">
+	<div class="row my-4 py-4">
+		<div class="col offset-2">
+			<a class="link-success m-1" routerLink="/lesson/{{ lessonId }}"
+				><span class="badge bg-warning fs-5">Volver</span></a
+			>
+		</div>
+	</div>
+
+	<div class="row my-4 py-4">
 		<div class="col text-center">
 			<h1>{{ activity.form.formName }}</h1>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col">
-			<p>Descripci&oacute;n</p>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<p> {{ activity.form.description }} </p>
+		<div class="col-8 offset-2">
+			<p>{{ activity.form.description }}</p>
 		</div>
 	</div>
 
@@ -38,7 +40,7 @@
 			<div class="m-4">
 				<button
 					class="btn btn-outline-danger"
-					(click)="cancelAddQuestions()"
+					routerLink="/lesson/{{ lessonId }}"
 				>
 					Cancelar
 				</button>

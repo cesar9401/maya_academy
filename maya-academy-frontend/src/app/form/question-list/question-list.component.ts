@@ -43,7 +43,7 @@ export class QuestionListComponent implements OnInit {
 			.subscribe({
 				next: (response) => {
 					this.activity = response;
-					console.log(this.activity);
+					// console.log(this.activity);
 
 					/* verificar preguntas aqui */
 					if (this.activity.form && this.activity.form.questions && this.activity.form.questions.length) {
@@ -66,7 +66,7 @@ export class QuestionListComponent implements OnInit {
 			this.activity.form.questions = this.questions;
 			this.formService.createForm(this.activity.form).subscribe({
 				next: (response) => {
-					console.log(response);
+					// console.log(response);
 					this.router.navigate(['/lesson', this.lessonId]);
 				},
 				error: (e) => {
@@ -109,7 +109,7 @@ export class QuestionListComponent implements OnInit {
 			// eliminar pregunta
 			this.questionService.deleteQuestion(array[0].questionId).subscribe({
 				next: (response) => {
-					console.log(response);
+					// console.log(response);
 				},
 				error: (e) => {
 					console.log(e);

@@ -4,6 +4,7 @@ import { Activity } from 'src/app/model/activity.model';
 import { Lesson } from 'src/app/model/lesson.model';
 import { ActivityService } from 'src/app/service/activity.service';
 import { LessonService } from 'src/app/service/lesson.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
 	selector: 'app-lesson-details',
@@ -16,12 +17,14 @@ export class LessonDetailsComponent implements OnInit {
 	activities: Activity[];
 	activity: Activity;
 	activityForm: Activity;
+	editor: boolean = false;
 
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
 		private lessonService: LessonService,
-		private activityService: ActivityService
+		private activityService: ActivityService,
+		private userService: UserService
 	) {}
 
 	ngOnInit(): void {
@@ -29,13 +32,28 @@ export class LessonDetailsComponent implements OnInit {
 		this.lessonId = Number(routeParams.get('lessonId'));
 		this.getLessonById();
 		this.getActivitiesByLesson();
+		this.getUser();
+	}
+
+	private getUser() {
+		this.userService.getUserByToken().subscribe({
+			next: (response) => {
+				this.editor = response.userType;
+			},
+			error: (e) => {
+				console.log(e);
+			},
+		});
 	}
 
 	private getLessonById() {
+		if (!this.lessonId) {
+			this.router.navigate(['/lesson/lesson-list']);
+		}
+
 		this.lessonService.getLessonById(this.lessonId).subscribe({
 			next: (response) => {
 				this.lesson = response;
-				console.log(this.lesson);
 				// peticion de actividades
 			},
 			error: (e) => {
@@ -49,7 +67,7 @@ export class LessonDetailsComponent implements OnInit {
 		this.activityService.getActivitiesByLesson(this.lessonId).subscribe({
 			next: (response) => {
 				this.activities = response;
-				console.log(this.activities);
+				// console.log(this.activities);
 			},
 			error: (e) => {
 				console.log(e);
@@ -88,7 +106,7 @@ export class LessonDetailsComponent implements OnInit {
 				next: (response) => {
 					this.activityForm = response;
 					this.activity = null;
-					console.log(this.activityForm);
+					// console.log(this.activityForm);
 				},
 				error: (e) => {
 					// console.log(e);

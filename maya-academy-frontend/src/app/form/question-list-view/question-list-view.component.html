@@ -1,9 +1,31 @@
-<div class="container" *ngIf="activity && activity.form">
-    <h1 class="my-0 text-center">
-        FORMULARIO 1
-    </h1>
-    <div class="row" *ngFor="let question of questions; index as i">
-        <app-question-item-view [question]="question" [index]="i"></app-question-item-view>
-    </div>
+<div class="container my-4 py-4" *ngIf="activity && activity.form">
+	<h1 class="my-4 py-4 text-center">
+		{{ activity.form.formName }}
+	</h1>
 
+	<div class="row">
+		<div class="col-10 d-flex justify-content-end">
+			<p class="text-right m-0 p-0 text-secondary">
+				Ultima modificaci&oacute;n:
+				{{ activity.form.creationDate }}
+			</p>
+		</div>
+	</div>
+
+	<div class="row" *ngIf="editor">
+		<div class="col-10 d-flex justify-content-end">
+			<div>
+				<a [routerLink]="['edit-form', activity.form.formId]"
+					><span class="badge bg-warning fs-6">Editar</span></a
+				>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" *ngFor="let question of questions; index as i">
+		<app-question-item-view
+			[question]="question"
+			[index]="i"
+		></app-question-item-view>
+	</div>
 </div>

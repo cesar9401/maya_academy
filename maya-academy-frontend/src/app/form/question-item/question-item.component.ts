@@ -36,7 +36,8 @@ export class QuestionItemComponent implements OnInit {
 	}
 
 	deleteOption(i: number) {
-		this.question.options.splice(i, 1);
+		const optionArray = this.question.options.splice(i, 1);
+		console.log(optionArray); // eliminar opcion de base de datos si existe
 	}
 
 	changeQuestionTitle(event) {

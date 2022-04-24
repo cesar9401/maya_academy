@@ -34,13 +34,11 @@ public class Activity {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-
     /*
     @ManyToOne
     @JoinColumn(name = "lesson_id", insertable = false, updatable = false)
     private Lesson lesson;
     */
-
 
     @OneToOne(mappedBy = "activity", cascade = CascadeType.PERSIST)
     @JsonManagedReference

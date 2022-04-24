@@ -8,12 +8,12 @@ import { Question } from 'src/app/model/question.model';
 })
 export class QuestionListViewComponent implements OnInit {
 	@Input() activity: Activity;
+	@Input() editor = false;
 	questions: Question[];
 
 	constructor() {}
 
 	ngOnInit(): void {
 		this.questions = this.activity.form.questions;
-		// this.questions = [new Question(), new Question(), new Question()];
 	}
 }

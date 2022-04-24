@@ -4,7 +4,6 @@ import {
 	CanActivate,
 	Router,
 	RouterStateSnapshot,
-	UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../service/user.service';
@@ -22,24 +21,12 @@ export class CanActiveEditorGuard implements CanActivate {
 		const user = localStorage.getItem('current_user');
 		if (user) {
 			const prom = await this.service.getUserByToken().toPromise();
-			console.log(prom);
 			if (prom.userType) {
 				return true;
 			}
 
 			this.router.navigate(['home']);
 			return false;
-			// this.service.getUserByToken().subscribe({
-			// 	next: (response) => {
-			// 		if(!response.userType) {
-			// 			console.log(response);
-			// 			this.router.navigate(['home']);
-			// 		}
-			// 	},
-			// 	error: (e) => {
-			// 		console.log(e);
-			// 	}
-			// });
 		}
 
 		this.router.navigate(['login']);

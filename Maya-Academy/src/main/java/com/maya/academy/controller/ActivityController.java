@@ -51,7 +51,12 @@ public class ActivityController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         return service.findActivityByLessonIdAndFormId(lessonId, formId)
-                .map(a -> new ResponseEntity<>(a, HttpStatus.OK))
+                .map(a -> {
+                    if (a.getUser() != null) {
+                        a.getUser().setPassword(null);
+                    }
+                    return new ResponseEntity<>(a, HttpStatus.OK);
+                })
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -62,7 +67,12 @@ public class ActivityController {
         }
 
         return service.findActivityByLessonAndArticleId(lessonId, articleId)
-                .map(a -> new ResponseEntity<>(a, HttpStatus.OK))
+                .map(a -> {
+                    if (a.getUser() != null) {
+                        a.getUser().setPassword(null);
+                    }
+                    return new ResponseEntity<>(a, HttpStatus.OK);
+                })
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

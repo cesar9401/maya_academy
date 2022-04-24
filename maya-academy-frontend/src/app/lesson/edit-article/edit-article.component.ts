@@ -90,7 +90,7 @@ export class EditArticleComponent implements OnInit {
 				.updateArticle(this.activity.article).subscribe({
 					next: (response) => {
 						console.log(response);
-						this.router.navigate(['lesson', this.lessonId, 'article', this.articleId]);
+						this.router.navigate(['lesson', this.lessonId]);
 					},
 					error: (e) => {
 						console.log(e);
