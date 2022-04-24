@@ -1,24 +1,39 @@
-<div class="container my-4 pt-2">
-    <div class="row">
-        <div class="col text-center">
-            <h1 *ngIf="lesson">{{lesson.lessonName}}</h1>
-        </div>
-    </div>
+<div class="container-fluid my-4 pt-2 mr-4 ml-4">
+	<div class="row">
+		<div class="col text-center">
+			<h1 *ngIf="lesson">{{ lesson.lessonName }}</h1>
+		</div>
+	</div>
 
-    <br><br>
+	<br /><br />
 
-    <div class="row">
-        <div class="col-3">
-            <div class="list-group">
-                <h5 class="activities-list-title">Actividades de la Lección</h5>
-                <div *ngFor="let activity of activities">
-                    <app-activity-element [activity]="activity"></app-activity-element>
-                </div>
-            </div>
-        </div>
-        <div class="col-9">
-
-        </div>
-    </div>
-
+	<div class="row">
+		<div class="col-2 offset-1">
+			<div class="list-group">
+				<h5 class="activities-list-title">Actividades de la Lección</h5>
+				<div class="d-flex justify-content-between p-1">
+					<a class="link-success" routerLink="add-article"
+						>Agregar articulo</a
+					>
+					<a class="link-danger" routerLink="add-form"
+						>Agregar formulario</a
+					>
+				</div>
+				<div *ngFor="let activity of activities">
+					<app-activity-element
+						(articleId)="getArticleId($event)"
+						[activity]="activity"
+					></app-activity-element>
+				</div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div id="actividad">
+				<app-article-view
+					*ngIf="activity"
+					[activity]="activity"
+				></app-article-view>
+			</div>
+		</div>
+	</div>
 </div>

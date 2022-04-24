@@ -60,7 +60,7 @@ export class EditorComponent implements OnInit {
 	}
 
 	getLessonById() {
-		if(!this.lessonId) {
+		if (!this.lessonId) {
 			this.router.navigate(['/lesson/lesson-list']);
 		}
 
@@ -72,7 +72,7 @@ export class EditorComponent implements OnInit {
 			error: (e) => {
 				console.log(e);
 				this.router.navigate(['/lesson/lesson-list']);
-			}
+			},
 		});
 	}
 
@@ -98,7 +98,7 @@ export class EditorComponent implements OnInit {
 				},
 				error: (e) => {
 					console.log(e);
-				}
+				},
 			});
 		}
 	}

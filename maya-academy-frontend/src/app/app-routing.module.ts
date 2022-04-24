@@ -46,7 +46,16 @@ const routes: Routes = [
 						component: AddLessonComponent,
 						canActivate: [CanActiveEditorGuard],
 					},
-					{ path: ':lessonId', component: LessonDetailsComponent },
+					{
+						path: ':lessonId',
+						component: LessonDetailsComponent,
+						// children: [
+						// 	{
+						// 		path: 'article/:articleId',
+						// 		component: ArticleViewComponent,
+						// 	},
+						// ],
+					},
 					// agregar formulario
 					{
 						path: ':lessonId/add-form',
@@ -64,10 +73,7 @@ const routes: Routes = [
 						component: EditorComponent,
 						canActivate: [CanActiveEditorGuard],
 					},
-					{
-						path: ':lessonId/article/:articleId',
-						component: ArticleViewComponent,
-					},
+
 					{
 						path: ':lessonId/edit-article/:articleId',
 						component: EditArticleComponent,

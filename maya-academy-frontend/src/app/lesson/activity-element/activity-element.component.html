@@ -1,4 +1,3 @@
-
 <!--
 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
 <div class="card-header"><a [routerLink]="['/lesson', activity.activityId]">Ver leccion</a></div>
@@ -10,25 +9,35 @@
 </div>
     -->
 
-<a *ngIf="activity.activityType=='FORM'" href="" class="list-group-item list-group-item-secondary ">
-    <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{activity.form.formName}}</h5>
-        <small>Formulario</small>
-    </div>
-    <p class="mb-1">
-        Aquí podría ir una descripción de la actividad
-    </p>
-    <small>Autor: {{activity.user.firstName}} {{activity.user.lastName}}</small>
+<a
+	*ngIf="activity.activityType == 'FORM'"
+	href=""
+	class="list-group-item list-group-item-secondary"
+>
+	<div class="d-flex w-100 justify-content-between">
+		<h5 class="mb-1">{{ activity.form.formName }}</h5>
+		<small>Formulario</small>
+	</div>
+	<p class="mb-1">Aquí podría ir una descripción de la actividad</p>
+	<small
+		>Autor: {{ activity.user.firstName }}
+		{{ activity.user.lastName }}</small
+	>
 </a>
 
-
-<a *ngIf="activity.activityType=='ARTICLE'" href="" class="list-group-item list-group-item-dark">
-    <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{activity.article.articleName}}</h5>
-        <small>Artículo</small>
-    </div>
-    <p class="mb-1">
-        Aquí podría ir una descripción de la actividad
-    </p>
-    <small>Autor: {{activity.user.firstName}} {{activity.user.lastName}}</small>
+<a
+	*ngIf="activity.article"
+	class="list-group-item list-group-item-dark"
+	(click)="emitArticleId(activity.article.articleId)"
+	style="cursor: pointer"
+>
+	<div class="d-flex w-100 justify-content-between">
+		<h5 class="mb-1">{{ activity.article.articleName }}</h5>
+		<small>Artículo</small>
+	</div>
+	<p class="mb-1">Aquí podría ir una descripción de la actividad</p>
+	<small
+		>Autor: {{ activity.user.firstName }}
+		{{ activity.user.lastName }}</small
+	>
 </a>

@@ -46,7 +46,7 @@ export class QuestionListComponent implements OnInit {
 					console.log(this.activity);
 
 					/* verificar preguntas aqui */
-					if (this.activity.form && this.activity.form.questions) {
+					if (this.activity.form && this.activity.form.questions && this.activity.form.questions.length) {
 						this.questions = this.activity.form.questions;
 					} else {
 						this.questions = [this.addQuestion()];
