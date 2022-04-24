@@ -10,7 +10,7 @@ import { HomepageContentComponent } from './homepage-content/homepage-content.co
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-import { EditorComponent } from './editor/editor.component';
+import { EditorComponent } from './lesson/editor/editor.component';
 
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +27,7 @@ import { QuestionItemViewComponent } from './form/question-item-view/question-it
 import { QuestionListViewComponent } from './form/question-list-view/question-list-view.component';
 import { HomelayoutComponent } from './homelayout/homelayout.component';
 import { ArticleViewComponent } from './lesson/article-view/article-view.component';
+import { EditArticleComponent } from './lesson/edit-article/edit-article.component';
 
 @NgModule({
 	declarations: [
@@ -47,7 +48,8 @@ import { ArticleViewComponent } from './lesson/article-view/article-view.compone
 		QuestionItemViewComponent,
 		QuestionListViewComponent,
 		HomelayoutComponent,
-  ArticleViewComponent,
+		ArticleViewComponent,
+  EditArticleComponent,
 	],
 	imports: [
 		BrowserModule,

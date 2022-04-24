@@ -26,4 +26,9 @@ public class ArticleService {
         article.setModificationDate(LocalDate.now());
         return repository.save(article);
     }
+
+    public Article updateArticle(Article article) {
+        article.setModificationDate(LocalDate.now());
+        return repository.save(article);
+    }
 }

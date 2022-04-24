@@ -20,4 +20,8 @@ export class ArticleService {
 	createArticle(article: Article) {
 		return this.http.post<Article>(this.url, article, this.headers);
 	}
+
+	updateArticle(article: Article) {
+		return this.http.put<Article>(this.url, article, this.headers);
+	}
 }

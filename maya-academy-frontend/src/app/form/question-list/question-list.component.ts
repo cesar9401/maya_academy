@@ -4,6 +4,7 @@ import { Activity } from 'src/app/model/activity.model';
 import { Question } from 'src/app/model/question.model';
 import { ActivityService } from 'src/app/service/activity.service';
 import { FormService } from 'src/app/service/form.service';
+import { QuestionService } from 'src/app/service/question.service';
 
 @Component({
 	selector: 'app-question-list',
@@ -20,7 +21,8 @@ export class QuestionListComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private activityService: ActivityService,
-		private formService: FormService
+		private formService: FormService,
+		private questionService: QuestionService
 	) {}
 
 	ngOnInit(): void {
@@ -29,9 +31,6 @@ export class QuestionListComponent implements OnInit {
 		this.formId = Number(routeParams.get('formId'));
 
 		this.getActivityByLessonIdAndFormId();
-
-		/* questions */
-		this.questions = [this.addQuestion()];
 	}
 
 	getActivityByLessonIdAndFormId() {
@@ -45,9 +44,16 @@ export class QuestionListComponent implements OnInit {
 				next: (response) => {
 					this.activity = response;
 					console.log(this.activity);
+
+					/* verificar preguntas aqui */
+					if (this.activity.form && this.activity.form.questions) {
+						this.questions = this.activity.form.questions;
+					} else {
+						this.questions = [this.addQuestion()];
+					}
 				},
 				error: (e) => {
-					console.log(e);
+					// console.log(e);
 					this.router.navigate(['/lesson/lesson-list']);
 				},
 			});
@@ -94,9 +100,21 @@ export class QuestionListComponent implements OnInit {
 	}
 
 	removeQuestion(index: number) {
-		this.questions.splice(index, 1);
+		const array = this.questions.splice(index, 1);
 		if (!this.questions.length) {
 			this.questions.push(this.addQuestion());
+		}
+
+		if (array[0].questionId) {
+			// eliminar pregunta
+			this.questionService.deleteQuestion(array[0].questionId).subscribe({
+				next: (response) => {
+					console.log(response);
+				},
+				error: (e) => {
+					console.log(e);
+				},
+			});
 		}
 	}
 

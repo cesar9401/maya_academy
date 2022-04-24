@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Activity } from '../model/activity.model';
-import { Article } from '../model/article.model';
-import { Lesson } from '../model/lesson.model';
-import { ArticleService } from '../service/article.service';
-import { LessonService } from '../service/lesson.service';
+import { Activity } from '../../model/activity.model';
+import { Article } from '../../model/article.model';
+import { Lesson } from '../../model/lesson.model';
+import { ArticleService } from '../../service/article.service';
+import { LessonService } from '../../service/lesson.service';
 
 @Component({
 	selector: 'app-editor',
@@ -66,7 +66,7 @@ export class EditorComponent implements OnInit {
 
 		this.lessonService.getLessonById(this.lessonId).subscribe({
 			next: (response) => {
-				console.log(response);
+				// console.log(response);
 				this.lesson = response;
 			},
 			error: (e) => {
@@ -81,11 +81,10 @@ export class EditorComponent implements OnInit {
 			const { title, text } = this.form.value;
 
 			const activity: Activity = new Activity();
-			/* datos quedamos */
 			// activity.userId = 1; // el token brinda el userId
 			activity.lessonId = this.lessonId;
 			activity.activityType = 'ARTICLE';
-			/* datos quemados */
+
 			this.article = new Article();
 			this.article.activity = activity;
 			this.article.articleName = title;
@@ -94,7 +93,7 @@ export class EditorComponent implements OnInit {
 			this.articleService.createArticle(this.article).subscribe({
 				next: (response: Article) => {
 					console.log(response);
-					this.router.navigate(['/']);
+					// this.router.navigate(['/']);
 					this.router.navigate(['/lesson', this.lessonId]);
 				},
 				error: (e) => {

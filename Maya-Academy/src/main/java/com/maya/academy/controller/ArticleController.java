@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,5 +47,15 @@ public class ArticleController {
         int userId = Integer.parseInt(jwt.getKey(token));
         Article art = service.createArticle(article, userId);
         return new ResponseEntity<>(art, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<Article> updateArticle(@RequestHeader(value = "Authorization") String token, @RequestBody Article article) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        Article a = service.updateArticle(article);
+        return new ResponseEntity<>(a, HttpStatus.OK);
     }
 }
