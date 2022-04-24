@@ -1,98 +1,56 @@
 <div class="container my-4">
-	<div class="row">
-		<div class="col-8 offset-2">
-			<div class="card">
-				<div
-					class="card-header d-flex justify-content-between align-items-center"
-				>
-					<div>
-						<h6 class="my-0 text-center">
-							Pregunta {{ index + 1 }}
-						</h6>
-					</div>
-					<div>
-						<input
-							type="number"
-							class="form-control text-center"
-							value="0"
-							(input)="changeQuestionValue($event)"
-							min="0"
-						/>
-					</div>
-					<div>
-						<button type="button" class="btn-close"></button>
-					</div>
-				</div>
-				<div class="card-body">
-					<div class="question">
-						<input
-							class="form-control"
-							type="text"
-							(input)="changeQuestionTitle($event)"
-							value="{{ question.questionTitle }}"
-						/>
-					</div>
-					<div class="options my-4">
-						<div
-							class="row my-2"
-							*ngFor="let option of options; index as i"
-						>
-							<div class="col input-group">
-								<div class="input-group-text">
-									<input
-										class="form-check-input mt-0"
-										type="radio"
-										[checked]="option.correct"
-										name="nombre_1"
-										(input)="changeRadio($event, i)"
-									/>
-								</div>
-								<input
-									type="text"
-									class="form-control"
-									[value]="option.optionTitle"
-									(input)="changeInput($event, i)"
-								/>
-							</div>
-							<div class="col-1 my-auto px-0">
-								<button
-									type="button"
-									class="btn-close"
-									aria-label="Close"
-									(click)="deleteOption(i)"
-								></button>
-							</div>
-						</div>
-					</div>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="my-0 text-center">
+                            Pregunta {{ index + 1 }}
+                        </h6>
+                    </div>
+                    <div>
+                        <input type="number" class="form-control text-center" value="0" (input)="changeQuestionValue($event)" min="0" />
+                    </div>
+                    <div>
+                        <button type="button" class="btn-close"></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="question">
+                        <input class="form-control" type="text" (input)="changeQuestionTitle($event)" value="{{ question.questionTitle }}" />
+                    </div>
+                    <div class="options my-4">
+                        <div class="row my-2" *ngFor="let option of options; index as i">
+                            <div class="col input-group">
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio" [checked]="option.correct" name="nombre_1" (input)="changeRadio($event, i)" />
+                                </div>
+                                <input type="text" class="form-control" [value]="option.optionTitle" (input)="changeInput($event, i)" />
+                            </div>
+                            <div class="col-1 my-auto px-0">
+                                <button type="button" class="btn-close" aria-label="Close" (click)="deleteOption(i)"></button>
+                            </div>
+                        </div>
+                    </div>
 
-					<div class="add-option my-4">
-						<div class="input-group">
-							<div class="input-group-text">
-								<input
-									class="form-check-input mt-0"
-									type="radio"
-									disabled
-								/>
-							</div>
-							<input
-								type="text"
-								class="form-control"
-								value="Add another option"
-								readonly
-								(click)="addOption()"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col px-0 d-flex flex-column justify-content-center">
-			<div>
-				<button class="btn btn-secondary my-1">&#8593;</button>
-			</div>
-			<div>
-				<button class="btn btn-secondary my-1">&#8595;</button>
-			</div>
-		</div>
-	</div>
+                    <div class="add-option my-4">
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="radio" disabled />
+                            </div>
+                            <input type="text" class="form-control" value="Add another option" readonly (click)="addOption()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col px-0 d-flex flex-column justify-content-center">
+            <div>
+                <button class="btn btn-secondary my-1">&#8593;</button>
+            </div>
+            <div>
+                <button class="btn btn-secondary my-1">&#8595;</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,1 +1,9 @@
-<p>question-list-view works!</p>
+<div class="container">
+    <h6 class="my-0 text-center">
+        FORMULARIO 1
+    </h6>
+    <div class="row" *ngFor="let question of questions; index as i">
+        <app-question-item-view [question]="question" [index]="i"></app-question-item-view>
+    </div>
+
+</div>

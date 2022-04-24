@@ -1,1 +1,28 @@
-<p>question-item-view works!</p>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="my-0 text-center">
+                            Pregunta {{ index + 1 }}
+                        </h6>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <label>Seleccione la respuesta correcta</label>
+                    <div class="options my-4">
+                        <div class="row my-2" *ngFor="let option of options; index as i">
+                            <div class="col input-group">
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio" [checked]="option.correct" name="nombre_1" />
+                                </div>
+                                <label class="form-control">{{option.optionTitle}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
