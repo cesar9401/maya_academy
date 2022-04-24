@@ -1,5 +1,6 @@
 import { Article } from "./article.model";
 import { Form } from "./form.model";
+import { User } from "./user.model";
 
 export class Activity {
 	activityId: number;
@@ -8,4 +9,5 @@ export class Activity {
 	activityType: string;
 	article: Article;
 	form: Form;
+	user: User;
 }

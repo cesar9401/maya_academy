@@ -12,23 +12,23 @@
 
 <a *ngIf="activity.activityType=='FORM'" href="" class="list-group-item list-group-item-secondary ">
     <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{activity.activityId}}</h5>
+        <h5 class="mb-1">{{activity.form.formName}}</h5>
         <small>Formulario</small>
     </div>
     <p class="mb-1">
         Aquí podría ir una descripción de la actividad
     </p>
-    <small>Id autor: {{activity.userId}}</small>
+    <small>Autor: {{activity.user.firstName}} {{activity.user.lastName}}</small>
 </a>
 
 
 <a *ngIf="activity.activityType=='ARTICLE'" href="" class="list-group-item list-group-item-dark">
     <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{activity.activityId}}</h5>
+        <h5 class="mb-1">{{activity.article.articleName}}</h5>
         <small>Artículo</small>
     </div>
     <p class="mb-1">
         Aquí podría ir una descripción de la actividad
     </p>
-    <small>Id autor: {{activity.userId}}</small>
+    <small>Autor: {{activity.user.firstName}} {{activity.user.lastName}}</small>
 </a>

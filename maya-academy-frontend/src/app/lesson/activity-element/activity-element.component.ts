@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Activity } from 'src/app/model/activity.model';
+import { Article } from 'src/app/model/article.model';
+import { ArticleService } from 'src/app/service/article.service';
 
 @Component({
   selector: 'app-activity-element',
@@ -9,10 +11,20 @@ import { Activity } from 'src/app/model/activity.model';
 export class ActivityElementComponent implements OnInit {
   @Input() activity: Activity;
 
-  constructor() { }
+  ActivityAutor: String;
+  ActivityName: String;
+
+  
+  constructor(
+    private articleService: ArticleService,
+  ) { }
 
   ngOnInit(): void {
     console.log(this.activity.activityType);
+  }
+
+  setName(): void{
+    
   }
 
 }
