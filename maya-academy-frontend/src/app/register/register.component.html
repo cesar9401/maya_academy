@@ -1,68 +1,110 @@
-<div class="sidenav">
-    <div class="login-main-text">
-        <h2>¿Aún no tienes una cuenta?<br>Registrate en nuestra academia!</h2>
-        <p>y comienza a enriquecer tus conocimientos sobre la cultura maya</p>
-    </div>
+<div class="sidenav d-flex justify-content-center align-items-center">
+	<div class="login-main-text">
+		<h2>¿Aún no tienes una cuenta?<br />Registrate en nuestra academia!</h2>
+		<p>y comienza a enriquecer tus conocimientos sobre la cultura maya</p>
+	</div>
 </div>
-<div class="main">
-    <div class="col-md-6 col-sm-12">
-        <div class="p-5" style="margin-top: 150px;">
-            <form [formGroup]="formRegister" (submit)="send()">
-                <div class="row">
-                    <div class="col-6">
-                        <label>Nombre:</label>
-                        <input formControlName="first_name" type="text" class="form-control d-block" placeholder="First Name">
-                    </div>
-                    <div class="col-6">
-                        <label>Apellido:</label>
-                        <input formControlName="last_name" type="text" class="form-control d-block" placeholder="Last Name">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <label>Nombre de Usuario:</label>
-                        <input formControlName="username" type="text" class="form-control d-block" placeholder="username">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label>Contraseña:</label>
-                        <input formControlName="password" type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="col-6">
+<div
+	class="main d-flex justify-content-between align-items-center"
+	style="height: 100vh"
+>
+	<div class="col-md-6 col-sm-12">
+		<div class="p-5">
+			<form [formGroup]="formRegister" (submit)="send()">
+				<div class="row">
+					<div class="col-6">
+						<label>Nombre:</label>
+						<input
+							formControlName="first_name"
+							type="text"
+							class="form-control d-block"
+							placeholder="First Name"
+						/>
+					</div>
+					<div class="col-6">
+						<label>Apellido:</label>
+						<input
+							formControlName="last_name"
+							type="text"
+							class="form-control d-block"
+							placeholder="Last Name"
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<label>Nombre de Usuario:</label>
+						<input
+							formControlName="username"
+							type="text"
+							class="form-control d-block"
+							placeholder="username"
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-6">
+						<label>Contraseña:</label>
+						<input
+							formControlName="password"
+							type="password"
+							class="form-control"
+							placeholder="Password"
+						/>
+					</div>
+					<div class="col-6">
 						<label>Tipo de Usuario</label>
 						<select formControlName="typeUser" class="form-select">
 							<option value="1">Docente</option>
 							<option value="0">Alumno</option>
 						</select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <label>Correo Electrónico:</label>
-                        <input formControlName="email" type="text" class="form-control d-block" placeholder="email">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label>Genero:</label>
-                        <select formControlName="gender" class="form-select">
-                    <option value="MASCULINO">Masculino</option>
-                    <option value="FEMENINO">Femenino</option>
-                    <option value="OTRO">Otro</option>
-                </select>
-                    </div>
-                    <div class="col-6">
-                        <label>Telefono:</label>
-                        <input formControlName="phone_number" type="text" class="form-control d-block" placeholder="Phone">
-                    </div>
-
-                </div>
-                <br>
-                <div class="row">
-                    <button class="btn btn-secondary" [disabled]="formRegister.invalid">Registrarse</button>
-                </div>
-            </form>
-        </div>
-    </div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<label>Correo Electrónico:</label>
+						<input
+							formControlName="email"
+							type="text"
+							class="form-control d-block"
+							placeholder="email"
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-6">
+						<label>Genero:</label>
+						<select formControlName="gender" class="form-select">
+							<option value="MASCULINO">Masculino</option>
+							<option value="FEMENINO">Femenino</option>
+							<option value="OTRO">Otro</option>
+						</select>
+					</div>
+					<div class="col-6">
+						<label>Telefono:</label>
+						<input
+							formControlName="phone_number"
+							type="text"
+							class="form-control d-block"
+							placeholder="Phone"
+						/>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<button
+						class="btn btn-secondary"
+						[disabled]="formRegister.invalid"
+					>
+						Registrarse
+					</button>
+				</div>
+				<div class="row mt-4">
+					<a class="btn btn-light" routerLink="/login"
+						>Volver al login</a
+					>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

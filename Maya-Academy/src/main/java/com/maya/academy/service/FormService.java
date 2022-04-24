@@ -18,8 +18,23 @@ public class FormService {
         return (List<Form>) repository.findAll();
     }
 
-    public Form createForm(Form form) {
+    public Form createForm(Form form, int userId) {
+        if (form.getActivity() != null) {
+            form.getActivity().setUserId(userId);
+        }
         form.setCreationDate(LocalDate.now());
+
+        if (form.getQuestions() != null) {
+            form.getQuestions().forEach(q -> {
+                q.setForm(form);
+                if (q.getOptions() != null) {
+                    q.getOptions().forEach(o -> {
+                        o.setQuestion(q);
+                    });
+                }
+            });
+        }
+
         return repository.save(form);
     }
 }

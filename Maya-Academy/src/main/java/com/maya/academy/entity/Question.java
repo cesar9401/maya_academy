@@ -1,5 +1,6 @@
 package com.maya.academy.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
@@ -32,8 +33,10 @@ public class Question {
     @Column(name = "question_id")
     private Integer questionId;
 
+    /*
     @Column(name = "form_id")
     private Integer formId;
+    */
 
     @Column(name = "question_title")
     private String questionTitle;
@@ -44,9 +47,9 @@ public class Question {
 
     private Integer score;
 
-    @ManyToOne
-    @JoinColumn(name = "form_id", insertable = false, updatable = false)
-    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "form_id", referencedColumnName = "form_id", updatable = false)
+    @JsonBackReference
     private Form form;
 
     @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})

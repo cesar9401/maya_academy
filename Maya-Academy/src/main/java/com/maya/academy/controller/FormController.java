@@ -41,7 +41,9 @@ public class FormController {
         if (jwt.tokenIsNotValidate(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        Form f = service.createForm(form);
+
+        int userId = Integer.parseInt(jwt.getKey(token));
+        Form f = service.createForm(form, userId);
         return new ResponseEntity<>(f, HttpStatus.CREATED);
     }
 }

@@ -1,12 +1,12 @@
-<div class="sidenav">
-	<div class="login-main-text">
+<div class="sidenav d-flex align-items-center justify-content-center">
+	<div class="login-main-text" style="margin-bottom: 150px">
 		<h2>Inicia Sesión<br />Entra al Mundo Maya</h2>
 		<p>y comienza a enriquecer tus conocimientos sobre la cultura maya</p>
 	</div>
 </div>
-<div class="main">
+<div class="main d-flex align-items-center justify-content-between">
 	<div class="col-md-6 col-sm-12">
-		<div class="p-5" style="margin-top: 150px">
+		<div class="p-5" style="margin-top: 250px">
 			<form [formGroup]="formLogin" (submit)="send()">
 				<div class="">
 					<label>Usuario:</label>
@@ -28,12 +28,14 @@
 					/>
 				</div>
 				<br />
-				<button style="margin-right: 5px" class="btn btn-black">
+				<button
+					style="margin-right: 5px"
+					class="btn btn-black"
+					[disabled]="formLogin.invalid"
+				>
 					Login
 				</button>
-				<a class="btn btn-secondary" routerLink="/register"
-					>Registrarse</a
-				>
+				<a class="btn btn-light" routerLink="/register">Registrarse</a>
 			</form>
 		</div>
 	</div>

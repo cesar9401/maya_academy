@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,6 +28,21 @@ public class UserController {
     @Autowired
     private JWTUtil jwt;
 
+    @GetMapping()
+    public ResponseEntity<User> getUserById(@RequestHeader(value = "Authorization") String token) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        int userId = Integer.parseInt(jwt.getKey(token));
+        return service.getById(userId)
+                .map(u -> {
+                    u.setPassword(null);
+                    return new ResponseEntity<>(u, HttpStatus.OK);
+                })
+                .orElse(new ResponseEntity<>(HttpStatus.FORBIDDEN));
+    }
+
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user) {
         User u = service.createUser(user);
@@ -34,16 +50,16 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<User> updateUser(@RequestHeader(value="Authorization") String token, @RequestBody User user) {
-        if(jwt.tokenIsNotValidate(token)) {
+    public ResponseEntity<User> updateUser(@RequestHeader(value = "Authorization") String token, @RequestBody User user) {
+        if (jwt.tokenIsNotValidate(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
-        if(user.getUserId() == null) {
+        if (user.getUserId() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        if(jwt.tokenIsNotCorrect(token, user.getUserId())) {
+        if (jwt.tokenIsNotCorrect(token, user.getUserId())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
@@ -52,13 +68,13 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteUser(@RequestHeader(value="Authorization") String token, @PathVariable int id) {
-        if(jwt.tokenIsNotValidate(token) || jwt.tokenIsNotCorrect(token, id)) {
+    public ResponseEntity<Boolean> deleteUser(@RequestHeader(value = "Authorization") String token, @PathVariable int id) {
+        if (jwt.tokenIsNotValidate(token) || jwt.tokenIsNotCorrect(token, id)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
         boolean isDeleted = service.deleteUserById(id);
-        if(isDeleted) {
+        if (isDeleted) {
             return new ResponseEntity<>(isDeleted, HttpStatus.OK);
         }
 

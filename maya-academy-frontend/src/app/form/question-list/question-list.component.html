@@ -1,11 +1,48 @@
-<div class="container">
-	<div class="row" *ngFor="let question of questions; index as i">
-		<app-question-item [question]="question" [index]="i"></app-question-item>
+<div class="container" *ngIf="activity">
+	<div class="row">
+		<div class="col text-center">
+			<h1>{{ activity.form.formName }}</h1>
+		</div>
 	</div>
 
 	<div class="row">
-		<div class="col text-center">
-			<button class="btn btn-primary" (click)="see()">See</button>
+		<div class="col">
+			<p>Descripci&oacute;n</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<p> {{ activity.form.description }} </p>
+		</div>
+	</div>
+
+	<div class="row" *ngFor="let question of questions; index as i">
+		<app-question-item
+			[question]="question"
+			[index]="i"
+			(questionIndex)="receiveQuestionIndex($event)"
+		></app-question-item>
+	</div>
+
+	<div class="row">
+		<div class="d-flex align-items-center justify-content-center">
+			<div class="m-4">
+				<button
+					class="btn btn-outline-success"
+					(click)="createQuestions()"
+				>
+					Agregar Preguntas
+				</button>
+			</div>
+			<div class="m-4">
+				<button
+					class="btn btn-outline-danger"
+					(click)="cancelAddQuestions()"
+				>
+					Cancelar
+				</button>
+			</div>
 		</div>
 	</div>
 </div>

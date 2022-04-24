@@ -19,7 +19,6 @@ export class LessonListComponent implements OnInit {
 		this.service.getAll().subscribe({
 			next: (response) => {
 				this.lessons = response;
-				console.log(this.lessons);
 			},
 			error: (e) => {
 				console.log(e);

@@ -44,4 +44,25 @@ public class ActivityController {
         List<Activity> activities = service.getByLessonId(id);
         return new ResponseEntity<>(activities, HttpStatus.OK);
     }
+
+    @GetMapping("/lesson/{lessonId}/form/{formId}")
+    public ResponseEntity<Activity> findByLessonIdAndFormId(@RequestHeader(value = "Authorization") String token, @PathVariable int lessonId, @PathVariable int formId) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        return service.findActivityByLessonIdAndFormId(lessonId, formId)
+                .map(a -> new ResponseEntity<>(a, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/lesson/{lessonId}/article/{articleId}")
+    public ResponseEntity<Activity> findByLessonIdAndArticleId(@RequestHeader(value = "Authorization") String token, @PathVariable int lessonId, @PathVariable int articleId) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        return service.findActivityByLessonAndArticleId(lessonId, articleId)
+                .map(a -> new ResponseEntity<>(a, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }

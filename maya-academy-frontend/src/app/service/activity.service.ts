@@ -23,4 +23,18 @@ export class ActivityService {
 			this.headers
 		);
 	}
+
+	getActivityByLessonIdAndFormId(lessonId: number, formId: number) {
+		return this.http.get<Activity>(
+			`${this.url}/lesson/${lessonId}/form/${formId}`,
+			this.headers
+		);
+	}
+
+	getActivityByLessonIdAndArticleId(lessonId: number, articleId: number) {
+		return this.http.get<Activity>(
+			`${this.url}/lesson/${lessonId}/article/${articleId}`,
+			this.headers
+		);
+	}
 }

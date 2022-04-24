@@ -18,8 +18,16 @@ public class ArticleService {
         return (List<Article>) repository.findAll();
     }
 
-    public Article createArticle(Article article) {
+    public Article createArticle(Article article, int userId) {
+        if (article.getActivity() != null) {
+            article.getActivity().setUserId(userId);
+        }
         article.setCreationDate(LocalDate.now());
+        article.setModificationDate(LocalDate.now());
+        return repository.save(article);
+    }
+
+    public Article updateArticle(Article article) {
         article.setModificationDate(LocalDate.now());
         return repository.save(article);
     }
