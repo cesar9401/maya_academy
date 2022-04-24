@@ -22,17 +22,23 @@
 				<div *ngFor="let activity of activities">
 					<app-activity-element
 						(articleId)="getArticleId($event)"
+						(formId)="getFormId($event)"
 						[activity]="activity"
 					></app-activity-element>
 				</div>
 			</div>
 		</div>
 		<div class="col-8">
-			<div id="actividad">
+			<div id="actividad" class="bg-light">
 				<app-article-view
 					*ngIf="activity"
 					[activity]="activity"
 				></app-article-view>
+
+				<app-question-list-view
+					[activity]="activityForm"
+					*ngIf="activityForm"
+				></app-question-list-view>
 			</div>
 		</div>
 	</div>

@@ -10,9 +10,10 @@
     -->
 
 <a
-	*ngIf="activity.activityType == 'FORM'"
-	href=""
+	*ngIf="activity.form"
 	class="list-group-item list-group-item-secondary"
+	(click)="emitFormId(activity.form.formId)"
+	style="cursor: pointer;"
 >
 	<div class="d-flex w-100 justify-content-between">
 		<h5 class="mb-1">{{ activity.form.formName }}</h5>

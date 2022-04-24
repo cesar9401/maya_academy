@@ -10,6 +10,7 @@ import { ArticleService } from 'src/app/service/article.service';
 export class ActivityElementComponent implements OnInit {
 	@Input() activity: Activity;
 	@Output() articleId = new EventEmitter<number>();
+	@Output() formId = new EventEmitter<number>();
 
 	ActivityAutor: String;
 	ActivityName: String;
@@ -24,5 +25,9 @@ export class ActivityElementComponent implements OnInit {
 
 	emitArticleId(id: number) {
 		this.articleId.emit(id);
+	}
+
+	emitFormId(id: number) {
+		this.formId.emit(id);
 	}
 }

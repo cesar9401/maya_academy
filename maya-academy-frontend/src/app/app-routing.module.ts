@@ -49,12 +49,6 @@ const routes: Routes = [
 					{
 						path: ':lessonId',
 						component: LessonDetailsComponent,
-						// children: [
-						// 	{
-						// 		path: 'article/:articleId',
-						// 		component: ArticleViewComponent,
-						// 	},
-						// ],
 					},
 					// agregar formulario
 					{
@@ -73,7 +67,6 @@ const routes: Routes = [
 						component: EditorComponent,
 						canActivate: [CanActiveEditorGuard],
 					},
-
 					{
 						path: ':lessonId/edit-article/:articleId',
 						component: EditArticleComponent,
@@ -82,7 +75,6 @@ const routes: Routes = [
 			},
 		],
 	},
-
 	{
 		path: 'login',
 		component: LoginComponent,
@@ -90,14 +82,6 @@ const routes: Routes = [
 	{
 		path: 'register',
 		component: RegisterComponent,
-	},
-	{
-		path: 'question-view',
-		component: QuestionItemViewComponent,
-	},
-	{
-		path: 'question-list-view',
-		component: QuestionListViewComponent,
 	},
 ];
 

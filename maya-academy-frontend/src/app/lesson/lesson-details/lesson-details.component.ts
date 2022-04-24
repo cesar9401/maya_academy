@@ -96,4 +96,8 @@ export class LessonDetailsComponent implements OnInit {
 				},
 			});
 	}
+
+	getFormId(id: number) {
+		this.getActivityByLessonIdAndFormId(this.lessonId, id);
+	}
 }
