@@ -48,7 +48,41 @@
 					*ngIf="activityForm"
 					[setActivity]="activityForm"
 					[editor]="editor"
+					(sendFormResult)="getFormIdAndResult($event)"
 				></app-question-list-view>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" tabindex="-2" id="modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="ms-auto">
+					<h5 class="modal-title text-center my-0">Informacion</h5>
+				</div>
+				<button
+					style="margin-bottom: auto"
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+			<div class="modal-body text-center" id="modal-body">
+				<p class="fs-5">
+					{{ message }}
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					class="btn btn-secondary"
+					data-bs-dismiss="modal"
+				>
+					Close
+				</button>
 			</div>
 		</div>
 	</div>

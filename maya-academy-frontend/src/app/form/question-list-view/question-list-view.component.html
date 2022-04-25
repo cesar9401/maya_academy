@@ -70,6 +70,14 @@
 		</div>
 
 		<div class="row">
+			<div class="col-10 offset-1">
+				<div class="alert alert-warning text-center" role="alert" *ngIf="!this.formValid">
+					Atenci&oacute;n! Debes de responder todas las preguntas para que el formulario sea v&aacute;lido.
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="col text-center">
 				<button
 					class="btn btn-outline-success btn-lg"

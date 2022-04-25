@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Activity } from 'src/app/model/activity.model';
 import { Progress } from 'src/app/model/progress.model';
 import { Question } from 'src/app/model/question.model';
@@ -9,6 +9,7 @@ import { ProgressService } from 'src/app/service/progress.service';
 	styleUrls: ['./question-list-view.component.css'],
 })
 export class QuestionListViewComponent implements OnInit {
+	formValid: boolean = true;
 	activity: Activity;
 	questions: Question[]; // respuestas correctas
 	passed: boolean = false;
@@ -25,7 +26,7 @@ export class QuestionListViewComponent implements OnInit {
 				},
 				error: (e) => {
 					console.log(e);
-				}
+				},
 			});
 
 		this.questions = [];
@@ -38,6 +39,10 @@ export class QuestionListViewComponent implements OnInit {
 			q.options.forEach((o) => (o.correct = false));
 		});
 	}
+	@Output() sendFormResult = new EventEmitter<{
+		form: number;
+		progress: Progress;
+	}>();
 
 	constructor(private progressService: ProgressService) {}
 
@@ -49,11 +54,12 @@ export class QuestionListViewComponent implements OnInit {
 	}
 
 	answerForm() {
-		const response = this.activity.form.questions.every((q) =>
+		this.formValid = true;
+		this.formValid = this.activity.form.questions.every((q) =>
 			this.checkQuestion(q)
 		);
 
-		if (response) {
+		if (this.formValid) {
 			let score = 0;
 			this.activity.form.questions.forEach((q, i) => {
 				let value = true;
@@ -71,12 +77,21 @@ export class QuestionListViewComponent implements OnInit {
 
 			this.progressService.createProgress(progress).subscribe({
 				next: (response) => {
-					console.log(response);
+					// console.log(response);
+					/* mostrar punteo y si aprobo el formulario o no */
+					this.emitFormResult(response);
 				},
 				error: (e) => {
 					console.log(e);
 				},
 			});
 		}
+	}
+
+	emitFormResult(response: Progress) {
+		this.sendFormResult.emit({
+			form: this.activity.form.formId,
+			progress: response,
+		});
 	}
 }

@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activity } from 'src/app/model/activity.model';
 import { Lesson } from 'src/app/model/lesson.model';
+import { Progress } from 'src/app/model/progress.model';
 import { ActivityService } from 'src/app/service/activity.service';
 import { LessonService } from 'src/app/service/lesson.service';
 import { UserService } from 'src/app/service/user.service';
+
+declare var bootstrap: any;
 
 @Component({
 	selector: 'app-lesson-details',
@@ -18,6 +21,7 @@ export class LessonDetailsComponent implements OnInit {
 	activity: Activity;
 	activityForm: Activity;
 	editor: boolean = false;
+	message: string = '';
 
 	constructor(
 		private router: Router,
@@ -67,8 +71,8 @@ export class LessonDetailsComponent implements OnInit {
 		this.activityService.getActivitiesByLesson(this.lessonId).subscribe({
 			next: (response) => {
 				this.activities = response;
-				if(this.activities) {
-					if(this.activities[0] && this.activities[0].article) {
+				if (this.activities) {
+					if (this.activities[0] && this.activities[0].article) {
 						this.activity = this.activities[0];
 					} else {
 						this.activityForm = this.activities[0];
@@ -125,5 +129,21 @@ export class LessonDetailsComponent implements OnInit {
 
 	getFormId(id: number) {
 		this.getActivityByLessonIdAndFormId(this.lessonId, id);
+	}
+
+	getFormIdAndResult(data: { form: number; progress: Progress }) {
+		// console.log(data);
+		this.getActivityByLessonIdAndFormId(this.lessonId, data.form);
+		// dar mensaje aca
+		this.message = data.progress.complete
+			? `Haz completado el formulario con una nota de ${data.progress.score} puntos, felicidades!`
+			: `Tú puedes, sigue intentando.`;
+		const modal = new bootstrap.Modal(
+			document.querySelector('#modal-info'),
+			{ focus: true }
+		);
+		setTimeout(() => {
+			modal.show();
+		}, 500);
 	}
 }

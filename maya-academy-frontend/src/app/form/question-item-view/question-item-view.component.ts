@@ -8,6 +8,13 @@ import { Question } from 'src/app/model/question.model';
 	styleUrls: ['./question-item-view.component.css'],
 })
 export class QuestionItemViewComponent implements OnInit {
+	classes = [
+		'border-info',
+		'border-primary',
+		'border-secondary',
+		'border-danger',
+		'border-warning',
+	];
 	@Input() question: Question;
 	@Input() index: number;
 	constructor() {}
