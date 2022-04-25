@@ -92,7 +92,7 @@ export class EditorComponent implements OnInit {
 
 			this.articleService.createArticle(this.article).subscribe({
 				next: (response: Article) => {
-					console.log(response);
+					// console.log(response);
 					// this.router.navigate(['/']);
 					this.router.navigate(['/lesson', this.lessonId]);
 				},

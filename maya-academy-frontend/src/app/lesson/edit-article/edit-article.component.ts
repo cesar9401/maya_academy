@@ -89,7 +89,7 @@ export class EditArticleComponent implements OnInit {
 			this.articleService
 				.updateArticle(this.activity.article).subscribe({
 					next: (response) => {
-						console.log(response);
+						// console.log(response);
 						this.router.navigate(['lesson', this.lessonId]);
 					},
 					error: (e) => {

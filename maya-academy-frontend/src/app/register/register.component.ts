@@ -46,10 +46,10 @@ export class RegisterComponent implements OnInit {
 			user.gender = this.formRegister.value.gender;
 			user.phoneNumber = this.formRegister.value.phone_number;
 			user.userType = this.formRegister.value.typeUser === '1';
-			console.log(user);
+			// console.log(user);
 			this.service.createUser(user).subscribe({
 				next: (response: any) => {
-					console.log(response);
+					// console.log(response);
 					this.router.navigate(['/login']);
 				},
 				error: (e) => {

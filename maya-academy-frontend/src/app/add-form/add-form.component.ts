@@ -75,7 +75,7 @@ export class AddFormComponent implements OnInit {
 		this.lessonService.getLessonById(this.lessonId).subscribe({
 			next: (response) => {
 				this.lesson = response;
-				console.log(this.lesson);
+				// console.log(this.lesson);
 				// peticion de actividades
 			},
 			error: (e) => {

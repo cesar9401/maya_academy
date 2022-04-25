@@ -14,4 +14,13 @@ export class LessonElementComponent implements OnInit {
 	ngOnInit(): void {
 		// console.log(this.lesson);
 	}
+
+	getLessonDetails() {
+		const size = 60;
+		if(this.lesson.description.length <= size) {
+			return this.lesson.description;
+		}
+
+		return `${this.lesson.description.substring(0, size)}...`;
+	}
 }

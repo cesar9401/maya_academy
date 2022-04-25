@@ -68,7 +68,7 @@ export class LessonDetailsComponent implements OnInit {
 			next: (response) => {
 				this.activities = response;
 				if(this.activities) {
-					if(this.activities[0].article) {
+					if(this.activities[0] && this.activities[0].article) {
 						this.activity = this.activities[0];
 					} else {
 						this.activityForm = this.activities[0];
