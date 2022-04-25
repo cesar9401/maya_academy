@@ -9,19 +9,13 @@
 </div>
     -->
 
-<a
-	*ngIf="activity.form"
-	class="list-group-item list-group-item-secondary"
-	(click)="emitFormId(activity.form.formId)"
-	style="cursor: pointer;"
->
-	<div class="d-flex w-100 justify-content-between">
-		<h5 class="mb-1">{{ activity.form.formName }}</h5>
-		<small>Formulario</small>
-	</div>
-	<p class="mb-1">Aquí podría ir una descripción de la actividad</p>
-	<small
-		>Autor: {{ activity.user.firstName }}
+<a *ngIf="activity.form" class="list-group-item list-group-item-secondary" (click)="emitFormId(activity.form.formId)" style="cursor: pointer; border-radius: 20% 5%;">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ activity.form.formName }}</h5>
+        <small>Formulario</small>
+    </div>
+    <p class="mb-1">Aquí podría ir una descripción de la actividad</p>
+    <small>Autor: {{ activity.user.firstName }}
 		{{ activity.user.lastName }}</small
 	>
 </a>
@@ -30,15 +24,14 @@
 	*ngIf="activity.article"
 	class="list-group-item list-group-item-dark"
 	(click)="emitArticleId(activity.article.articleId)"
-	style="cursor: pointer"
+	style="cursor: pointer "
 >
 	<div class="d-flex w-100 justify-content-between">
 		<h5 class="mb-1">{{ activity.article.articleName }}</h5>
 		<small>Artículo</small>
-	</div>
-	<p class="mb-1">Aquí podría ir una descripción de la actividad</p>
-	<small
-		>Autor: {{ activity.user.firstName }}
+    </div>
+    <p class="mb-1">Aquí podría ir una descripción de la actividad</p>
+    <small>Autor: {{ activity.user.firstName }}
 		{{ activity.user.lastName }}</small
 	>
 </a>
