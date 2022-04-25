@@ -5,3 +5,9 @@
 #texto p img {
 	width: 200px;
 }
+
+.article-background {
+    padding: 50px;
+    background-color: #f7f7f7;
+    border-radius: 20px 20px 20px 20px;
+}

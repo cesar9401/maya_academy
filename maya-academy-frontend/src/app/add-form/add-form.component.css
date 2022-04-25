@@ -3,3 +3,10 @@ textarea {
 	height: 150px;
 	resize: none;
 }
+
+.add-form-background {
+	padding: 50px;
+	background-color: white;
+	border-radius: 20px 20px 20px 20px;
+	opacity: 0.96;
+}

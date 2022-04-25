@@ -1,50 +1,52 @@
 <div class="container mt-4">
-	<div class="row my-4">
-		<div class="col offset-1 my-4">
-			<a class="link-success m-1" routerLink="/lesson"
-				><span class="badge bg-primary fs-5">Volver</span></a
-			>
+	<div class="add-lesson-background">
+		<div class="row my-4">
+			<div class="col offset-1 my-4">
+				<a class="link-success m-1" routerLink="/lesson"
+					><span class="badge bg-primary fs-5">Volver</span></a
+				>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col text-center">
-			<h1>Agregar Lecci&oacute;n</h1>
+		<div class="row">
+			<div class="col text-center">
+				<h1>Agregar Lecci&oacute;n</h1>
+			</div>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-10 offset-1">
-			<form [formGroup]="formLesson" (submit)="send()">
-				<div class="mb-3">
-					<label for="lesson-name" class="form-label"
-						>Nombre de la lecci&oacute;n</label
-					>
-					<input
-						type="text"
-						class="form-control text-center"
-						id="lesson-name"
-						formControlName="lessonName"
-					/>
-				</div>
-				<div class="mb-3">
-					<label for="lesson-text" class="form-label"
-						>Descripci&oacute;n</label
-					>
-					<textarea
-						id="lesson-text"
-						class="form-control"
-						formControlName="lessonText"
-					></textarea>
-				</div>
-				<div class="mb-3 text-center">
-					<button
-						class="btn btn-primary btn-lg"
-						[disabled]="formLesson.invalid"
-					>
-						Agregar
-					</button>
-				</div>
-			</form>
+		<div class="row">
+			<div class="col-10 offset-1">
+				<form [formGroup]="formLesson" (submit)="send()">
+					<div class="mb-3">
+						<label for="lesson-name" class="form-label"
+							>Nombre de la lecci&oacute;n</label
+						>
+						<input
+							type="text"
+							class="form-control text-center"
+							id="lesson-name"
+							formControlName="lessonName"
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="lesson-text" class="form-label"
+							>Descripci&oacute;n</label
+						>
+						<textarea
+							id="lesson-text"
+							class="form-control"
+							formControlName="lessonText"
+						></textarea>
+					</div>
+					<div class="mb-3 text-center">
+						<button
+							class="btn btn-primary btn-lg"
+							[disabled]="formLesson.invalid"
+						>
+							Agregar
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
