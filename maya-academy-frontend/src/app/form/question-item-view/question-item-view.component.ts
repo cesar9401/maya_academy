@@ -11,9 +11,15 @@ export class QuestionItemViewComponent implements OnInit {
 	@Input() question: Question;
 	@Input() index: number;
 	constructor() {}
-	options: Option[];
 
-	ngOnInit(): void {
-		this.options = this.question.options;
+	ngOnInit(): void {}
+
+	changeValueOption(event, i: number) {
+		this.question.options.forEach((option, index) => {
+			option.correct = false;
+			if (index === i) {
+				option.correct = true;
+			}
+		});
 	}
 }

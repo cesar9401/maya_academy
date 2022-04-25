@@ -12,9 +12,7 @@
 					</div>
 
 					<div>
-						<h6>
-							{{ question.score }} puntos
-						</h6>
+						<h6>{{ question.score }} puntos</h6>
 					</div>
 				</div>
 				<div class="card-body">
@@ -22,14 +20,15 @@
 					<div class="options my-4">
 						<div
 							class="row my-2"
-							*ngFor="let option of options; index as i"
+							*ngFor="let option of question.options; index as i"
 						>
 							<div class="col input-group">
 								<div class="input-group-text">
 									<input
 										class="form-check-input mt-0"
-										type="checkbox"
-										[name]="index"
+										type="radio"
+										name="{{ this.index }}"
+										(input)="changeValueOption($event, i)"
 									/>
 								</div>
 								<label class="form-control">{{

@@ -109,7 +109,7 @@ export class QuestionListComponent implements OnInit {
 			// eliminar pregunta
 			this.questionService.deleteQuestion(array[0].questionId).subscribe({
 				next: (response) => {
-					// console.log(response);
+					console.log(response);
 				},
 				error: (e) => {
 					console.log(e);

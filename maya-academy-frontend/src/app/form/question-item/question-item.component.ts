@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Option } from 'src/app/model/option.model';
 import { Question } from 'src/app/model/question.model';
+import { OptionService } from 'src/app/service/option.service';
 
 @Component({
 	selector: 'app-question-item',
@@ -22,11 +23,9 @@ export class QuestionItemComponent implements OnInit {
 		data: string;
 	}>();
 
-	constructor() {
-	}
+	constructor(private optionService: OptionService) {}
 
-	ngOnInit(): void {
-	}
+	ngOnInit(): void {}
 
 	addOption() {
 		const option = new Option();
@@ -36,8 +35,19 @@ export class QuestionItemComponent implements OnInit {
 	}
 
 	deleteOption(i: number) {
-		const optionArray = this.question.options.splice(i, 1);
-		console.log(optionArray); // eliminar opcion de base de datos si existe
+		const option = this.question.options[i];
+		if (option.optionId) {
+			this.optionService.deleteOptionById(option.optionId).subscribe({
+				next: (response) => {
+					if (response) {
+						this.question.options.splice(i, 1);
+					}
+				},
+				error: (e) => {
+					console.log(e);
+				},
+			});
+		}
 	}
 
 	changeQuestionTitle(event) {
@@ -53,7 +63,6 @@ export class QuestionItemComponent implements OnInit {
 	}
 
 	changeRadio(event, i) {
-		event.target.value, i;
 		this.question.options.forEach((option, index) => {
 			option.correct = false;
 			if (index === i) {

@@ -45,8 +45,8 @@
 				></app-article-view>
 
 				<app-question-list-view
-					[activity]="activityForm"
 					*ngIf="activityForm"
+					[setActivity]="activityForm"
 					[editor]="editor"
 				></app-question-list-view>
 			</div>

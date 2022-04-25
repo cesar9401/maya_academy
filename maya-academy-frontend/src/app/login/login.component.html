@@ -8,7 +8,7 @@
 	<div class="col-md-6 col-sm-12">
 		<div class="p-5" style="margin-top: 250px">
 			<form [formGroup]="formLogin" (submit)="send()">
-				<div class="">
+				<div>
 					<label>Usuario:</label>
 					<input
 						formControlName="username"
@@ -27,15 +27,27 @@
 						placeholder="Password"
 					/>
 				</div>
-				<br />
-				<button
-					style="margin-right: 5px"
-					class="btn btn-black"
-					[disabled]="formLogin.invalid"
+
+				<div
+					class="alert alert-danger my-3"
+					role="alert"
+					*ngIf="loginError"
 				>
-					Login
-				</button>
-				<a class="btn btn-light" routerLink="/register">Registrarse</a>
+					Usuario y/o contraseña incorrectos
+				</div>
+
+				<div class="my-4">
+					<button
+						style="margin-right: 5px"
+						class="btn btn-black"
+						[disabled]="formLogin.invalid"
+					>
+						Login
+					</button>
+					<a class="btn btn-light" routerLink="/register"
+						>Registrarse</a
+					>
+				</div>
 			</form>
 		</div>
 	</div>

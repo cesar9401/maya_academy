@@ -12,6 +12,7 @@ import { User } from '../model/user.model';
 })
 export class LoginComponent implements OnInit {
 	formLogin: FormGroup;
+	loginError: boolean = false;
 
 	constructor(
 		private router: Router,
@@ -33,6 +34,8 @@ export class LoginComponent implements OnInit {
 			user.password = password;
 			user.username = username;
 
+			this.loginError = false;
+
 			this.service.login(user).subscribe({
 				next: (response: any) => {
 					const token = response.Authorization;
@@ -40,7 +43,8 @@ export class LoginComponent implements OnInit {
 					this.router.navigate(['/']);
 				},
 				error: (e) => {
-					console.error(e);
+					// console.error(e);
+					this.loginError = true;
 				},
 			});
 		}

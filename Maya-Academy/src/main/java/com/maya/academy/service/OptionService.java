@@ -1,6 +1,5 @@
 package com.maya.academy.service;
 
-import com.maya.academy.entity.Option;
 import com.maya.academy.repository.OptionCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

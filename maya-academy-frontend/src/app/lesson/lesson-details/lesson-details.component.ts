@@ -84,6 +84,7 @@ export class LessonDetailsComponent implements OnInit {
 			.getActivityByLessonIdAndArticleId(lessonId_, articleId)
 			.subscribe({
 				next: (response) => {
+					// this.activity = null;
 					this.activity = response;
 					this.activityForm = null;
 					// console.log(this.activity);
@@ -104,6 +105,7 @@ export class LessonDetailsComponent implements OnInit {
 			.getActivityByLessonIdAndFormId(lessonId_, formId)
 			.subscribe({
 				next: (response) => {
+					// this.activityForm = null;
 					this.activityForm = response;
 					this.activity = null;
 					// console.log(this.activityForm);

@@ -56,7 +56,7 @@ export class AddFormComponent implements OnInit {
 
 			this.formService.createForm(this.form).subscribe({
 				next: (response) => {
-					console.log(response);
+					// console.log(response);
 					// this.router.navigate(['/']);
 					this.router.navigate(['/lesson', this.lessonId, 'form', response.formId, 'add-questions']);
 				},

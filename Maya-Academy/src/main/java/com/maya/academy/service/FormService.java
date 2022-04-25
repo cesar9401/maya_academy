@@ -1,6 +1,7 @@
 package com.maya.academy.service;
 
 import com.maya.academy.entity.Form;
+import com.maya.academy.entity.Question;
 import com.maya.academy.repository.FormCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class FormService {
         if (form.getActivity() != null) {
             form.getActivity().setUserId(userId);
         }
-        form.setCreationDate(LocalDate.now());
 
+        form.setCreationDate(LocalDate.now());
         if (form.getQuestions() != null) {
             form.getQuestions().forEach(q -> {
                 q.setForm(form);
@@ -35,6 +36,17 @@ public class FormService {
             });
         }
 
-        return repository.save(form);
+        Form tmp = repository.save(form);
+        /* modificar puntos aqui */
+        if (tmp.getQuestions() != null) {
+            int total = tmp.getQuestions().stream().mapToInt(Question::getScore).sum();
+            if (total != tmp.getTotal()) {
+                tmp.setTotal(total);
+                tmp.setMinimumCorrects((int) Math.floor(total * 0.70));
+                return repository.save(tmp);
+            }
+        }
+
+        return tmp;
     }
 }

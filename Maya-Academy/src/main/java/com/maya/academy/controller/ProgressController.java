@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -32,7 +33,8 @@ public class ProgressController {
         if (jwt.tokenIsNotValidate(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>(service.createProgress(progress), HttpStatus.CREATED);
+        int userId = Integer.parseInt(jwt.getKey(token));
+        return new ResponseEntity<>(service.createProgress(progress, userId), HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -41,5 +43,17 @@ public class ProgressController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/form/{formId}")
+    public ResponseEntity<Boolean> getByFormIdAndUser(@RequestHeader(value = "Authorization") String token, @PathVariable int formId) {
+        if (jwt.tokenIsNotValidate(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        int userId = Integer.parseInt(jwt.getKey(token));
+        return service.getByUserIdAndFormId(userId, formId)
+                .map(p -> new ResponseEntity<>(true, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(false, HttpStatus.OK));
     }
 }
