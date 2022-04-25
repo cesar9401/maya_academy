@@ -67,7 +67,13 @@ export class LessonDetailsComponent implements OnInit {
 		this.activityService.getActivitiesByLesson(this.lessonId).subscribe({
 			next: (response) => {
 				this.activities = response;
-				// console.log(this.activities);
+				if(this.activities) {
+					if(this.activities[0].article) {
+						this.activity = this.activities[0];
+					} else {
+						this.activityForm = this.activities[0];
+					}
+				}
 			},
 			error: (e) => {
 				console.log(e);

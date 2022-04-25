@@ -9,7 +9,7 @@
 
 	<div class="row">
 		<div class="col-2 offset-1">
-			<div class="list-group">
+			<div class="list-group" style="overflow-y: scroll; height: 900px">
 				<h5 class="activities-list-title">Actividades de la Lección</h5>
 				<div class="text-center p-1" *ngIf="editor">
 					<div class="m-2">
@@ -27,7 +27,7 @@
 						>
 					</div>
 				</div>
-				<div class="my-1" *ngFor="let activity of activities">
+				<div class="" *ngFor="let activity of activities">
 					<app-activity-element
 						(articleId)="getArticleId($event)"
 						(formId)="getFormId($event)"

@@ -31,7 +31,7 @@ export class ActivityElementComponent implements OnInit {
 		this.formId.emit(id);
 	}
 
-	getArticleDescription(text:string):string {
+	getDescription(text:string):string {
 		if(text.length < 25) {
 			return text;
 		} else {

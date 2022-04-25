@@ -1,25 +1,14 @@
-<!--
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-<div class="card-header"><a [routerLink]="['/lesson', activity.activityId]">Ver leccion</a></div>
-    <div class="card-body">
-        <h5 class="card-title" *ngIf="activity.activityType=='FORM'">Form:</h5>
-        <h5 class="card-title" *ngIf="activity.activityType=='ARTICLE'">Article:</h5>
-        <p class="card-text">Aquí podría ir la descripción de la lección, para así poder tener una idea de lo que trata la misma</p>
-    </div>
-</div>
-    -->
-
 <a
 	*ngIf="activity.form"
-	class="list-group-item list-group-item-secondary"
+	class="list-group-item list-group-item-secondary my-1"
 	(click)="emitFormId(activity.form.formId)"
-	style="cursor: pointer;"
+	style="cursor: pointer; border-radius: 20% 5%; width: 270px;"
 >
 	<div class="d-flex w-100 justify-content-between">
 		<h5 class="mb-1">{{ activity.form.formName }}</h5>
 		<small>Formulario</small>
 	</div>
-	<p class="mb-1">{{activity.form.description}}</p>
+	<p class="mb-1">{{getDescription(this.activity.form.description)}}</p>
 	<small
 		>Autor: {{ activity.user.firstName }}
 		{{ activity.user.lastName }}</small
@@ -28,15 +17,15 @@
 
 <a
 	*ngIf="activity.article"
-	class="list-group-item list-group-item-dark"
+	class="list-group-item list-group-item-dark my-1"
 	(click)="emitArticleId(activity.article.articleId)"
-	style="cursor: pointer"
+	style="cursor: pointer; border-radius: 20% 5%; width: 270px;"
 >
 	<div class="d-flex w-100 justify-content-between">
 		<h5 class="mb-1">{{ activity.article.articleName }}</h5>
 		<small>Artículo</small>
 	</div>
-	<!--<p class="mb-1">{{getArticleDescription(activity.article.articleText)}}</p>-->
+	<p class="mb-1">Aquí podría ir una descripción de la actividad</p>
 	<small
 		>Autor: {{ activity.user.firstName }}
 		{{ activity.user.lastName }}</small
