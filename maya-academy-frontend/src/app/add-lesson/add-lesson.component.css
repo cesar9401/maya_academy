@@ -1,0 +1,12 @@
+textarea {
+	width: 100%;
+	height: 150px;
+	resize: none;
+}
+
+.add-lesson-background {
+	padding: 50px;
+	background-color: white;
+	border-radius: 20px 20px 20px 20px;
+	opacity: 0.96;
+}

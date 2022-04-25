@@ -1,0 +1,36 @@
+<a
+	*ngIf="activity.form"
+	class="list-group-item list-group-item-secondary my-1"
+	(click)="emitFormId(activity.form.formId)"
+	style="cursor: pointer; border-radius: 20% 5%; width: 270px"
+>
+	<div class="d-flex w-100 justify-content-between">
+		<h5 class="mb-1">{{ activity.form.formName }}</h5>
+		<small>Formulario</small>
+	</div>
+	<p class="mb-1">{{ getDescription(this.activity.form.description) }}</p>
+	<small
+		>Autor: {{ activity.user.firstName }}
+		{{ activity.user.lastName }}</small
+	>
+</a>
+
+<a
+	*ngIf="activity.article"
+	class="list-group-item list-group-item-dark my-1"
+	(click)="emitArticleId(activity.article.articleId)"
+	style="cursor: pointer; border-radius: 20% 5%; width: 270px"
+>
+	<div class="d-flex w-100 justify-content-between">
+		<h5 class="mb-1">{{ activity.article.articleName }}</h5>
+		<small>Artículo</small>
+	</div>
+	<p class="mb-1">Creacion el: {{ activity.article.creationDate }}</p>
+	<p class="mb-1">
+		Ultima modificacion: {{ activity.article.modificationDate }}
+	</p>
+	<small
+		>Autor: {{ activity.user.firstName }}
+		{{ activity.user.lastName }}</small
+	>
+</a>

@@ -1,0 +1,54 @@
+<div class="sidenav d-flex align-items-center justify-content-center">
+	<div class="login-main-text" style="margin-bottom: 150px">
+		<h2>Inicia Sesión<br />Entra al Mundo Maya</h2>
+		<p>y comienza a enriquecer tus conocimientos sobre la cultura maya</p>
+	</div>
+</div>
+<div class="main d-flex align-items-center justify-content-between">
+	<div class="col-md-6 col-sm-12">
+		<div class="p-5" style="margin-top: 250px">
+			<form [formGroup]="formLogin" (submit)="send()">
+				<div>
+					<label>Usuario:</label>
+					<input
+						formControlName="username"
+						type="text"
+						class="form-control"
+						placeholder="User Name"
+					/>
+				</div>
+				<br />
+				<div class="">
+					<label>Contraseña:</label>
+					<input
+						formControlName="password"
+						type="password"
+						class="form-control"
+						placeholder="Password"
+					/>
+				</div>
+
+				<div
+					class="alert alert-danger my-3"
+					role="alert"
+					*ngIf="loginError"
+				>
+					Usuario y/o contraseña incorrectos
+				</div>
+
+				<div class="my-4">
+					<button
+						style="margin-right: 5px"
+						class="btn btn-black"
+						[disabled]="formLogin.invalid"
+					>
+						Login
+					</button>
+					<a class="btn btn-light" routerLink="/register"
+						>Registrarse</a
+					>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
