@@ -1,54 +1,56 @@
-<div class="container" *ngIf="activity && activity.article">
-	<div class="row my-4">
-		<div class="col offset-1 my-4">
-			<a class="link-success m-1" routerLink="/lesson/{{ lessonId }}"
-				><span class="badge bg-warning fs-5">Volver</span></a
-			>
-		</div>
-	</div>
-
-	<div class="row my-4">
-		<div class="col text-center my-4">
-			<h1>Editor</h1>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-10 offset-1">
-			<form [formGroup]="form" (submit)="editArticle()">
-				<div class="mb-3">
-					<label for="title-article" class="form-label fs-3 my-0"
-						>Titulo</label
-					>
-					<input
-						type="text"
-						class="form-control text-center"
-						id="title-article"
-						formControlName="title"
-					/>
-				</div>
-
-				<div
-					class="mb-3 text-center"
-					style="height: 500px; max-height: 500px"
+<div class="container my-4 py-4" *ngIf="activity && activity.article">
+	<div class="edit-article-background">
+		<div class="row my-4">
+			<div class="col offset-1 my-4">
+				<a class="link-success m-1" routerLink="/lesson/{{ lessonId }}"
+					><span class="badge bg-warning fs-5">Volver</span></a
 				>
-					<quill-editor
-						[styles]="{ height: '400px' }"
-						[modules]="modules"
-						theme="snow"
-						formControlName="text"
-					></quill-editor>
-				</div>
+			</div>
+		</div>
 
-				<div class="mb-3 text-center">
-					<button
-						class="btn btn-primary btn-lg text-center"
-						[disabled]="form.invalid"
+		<div class="row my-4">
+			<div class="col text-center my-4">
+				<h1>Editor</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-10 offset-1">
+				<form [formGroup]="form" (submit)="editArticle()">
+					<div class="mb-3">
+						<label for="title-article" class="form-label fs-3 my-0"
+							>Titulo</label
+						>
+						<input
+							type="text"
+							class="form-control text-center"
+							id="title-article"
+							formControlName="title"
+						/>
+					</div>
+
+					<div
+						class="mb-3 text-center"
+						style="height: 500px; max-height: 500px"
 					>
-						Editar
-					</button>
-				</div>
-			</form>
+						<quill-editor
+							[styles]="{ height: '400px' }"
+							[modules]="modules"
+							theme="snow"
+							formControlName="text"
+						></quill-editor>
+					</div>
+
+					<div class="mb-3 text-center">
+						<button
+							class="btn btn-primary btn-lg text-center"
+							[disabled]="form.invalid"
+						>
+							Editar
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>

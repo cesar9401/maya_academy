@@ -10,3 +10,10 @@
     animation: 25s rotate linear infinite;
     -webkit-transform-origin: 50% 50%;
 }
+
+.principal-banner {
+  padding: 50px;
+  background-color: white;
+  border-radius: 20px 20px 20px 20px;
+  opacity: 0.8;
+}
