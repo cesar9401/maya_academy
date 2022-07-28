@@ -1,0 +1,34 @@
+version: '3'
+services:
+  mysql:
+    build:
+      dockerfile: Dockerfile
+      context: ./db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - '3306:3306'
+    command: --init-file /database/init.sql
+  backend-spring:
+    build:
+      dockerfile: Dockerfile
+      context: ./Maya-Academy
+    environment:
+      - DB_URL=jdbc:mysql://mysql:3306/maya_academy
+      # - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=admin
+    depends_on:
+      - mysql
+    ports:
+      - '8090:8090'
+  angular:
+    build:
+      dockerfile: Dockerfile
+      context: ./maya-academy-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend-spring
+    ports:
+      - '4200:80'

@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Option } from '../model/option.model';
+import { environment } from 'src/environments/environment'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class OptionService {
-	private url: string = 'http://localhost:8090/maya-academy/api/option';
+	private url: string = `${environment.apiURL}/option`;
 	private headers: {};
 
 	constructor(private http: HttpClient) {

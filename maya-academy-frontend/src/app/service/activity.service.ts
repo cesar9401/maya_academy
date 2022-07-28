@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Activity } from '../model/activity.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ActivityService {
-	private url: string = 'http://localhost:8090/maya-academy/api/activity';
+	private url: string = `${environment.apiURL}/activity`;
 	private headers: {};
 
 	constructor(private http: HttpClient) {

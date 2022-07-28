@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Question } from '../model/question.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class QuestionService {
-	private url: string = 'http://localhost:8090/maya-academy/api/question';
+	private url: string = `${environment.apiURL}/question`;
 	private headers: {};
 
 	constructor(private http: HttpClient) {

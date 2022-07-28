@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Progress } from '../model/progress.model';
+import { environment } from 'src/environments/environment'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ProgressService {
-	private url: string = 'http://localhost:8090/maya-academy/api/progress';
+	private url: string = `${environment.apiURL}/progress`;
 
 	constructor(private http: HttpClient) {}
 
